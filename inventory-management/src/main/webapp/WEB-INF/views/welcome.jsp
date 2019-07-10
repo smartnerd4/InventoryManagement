@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
-<head>
-<title>Welcome</title>
-</head>
-<body>
-	<center>
-		<h1>Welcome to Smartnerd Inventory Management System</h1>
-		<a href="login"><h2>Click here to Login</h2></a>
-	</center>
-</body>
+    <head>
+    </head>
+    <body>
+        <div style="text-align:center"><h3>Welcome to Inventory-Management </h3></div>
+        <ul><li>Click Here to <a href="login">Login</a></ul>
+    </body>
 </html>

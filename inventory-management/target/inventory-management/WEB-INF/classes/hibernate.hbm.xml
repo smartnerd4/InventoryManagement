@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smartnerd.model.User" table="SN_USER">
+		<id name="USER_ID" type="string">
+			<column name="USER_ID" length="20" not-null="true" />
+			<generator class="assigned" />
+		</id>
+		<property name="USER_NAME" type="string">
+			<column name="USER_NAME" length="20" not-null="false" />
+		</property>
+		<property name="PASSWORD" type="string">
+			<column name="PASSWORD" length="20" not-null="false" />
+		</property>
+		<property name="SYS_CRE_DATE" type="date">
+			<column name="SYS_CRE_DATE" length="7" not-null="false" />
+		</property>
+		<property name="SYS_LST_MOD_DATE" type="date">
+			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
+		</property>
+		<property name="ACT_IN" type="int">
+			<column name="ACT_IN"  not-null="false" />
+		</property>
+		<property name="COMMENTS" type="string">
+			<column name="COMMENTS" length="20" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

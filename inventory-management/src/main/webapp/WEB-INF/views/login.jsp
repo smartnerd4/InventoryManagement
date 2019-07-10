@@ -1,26 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
-<head>
-<title>Login</title>
-</head>
-<body>
-	<h1>LOGIN PAGE</h1>
-	<form action="#" th:action="@{/form}" th:object="${login}"
-		method="post">
-		<h2>
-		<p>
-			UserName: <input type="text" th:field="*{username}" />
-		</p>
-		<p>
-			Password: <input type="password" th:field="*{password}" />
-		</p>
-		<p>
-			<input type="submit" value="Submit" /> <input type="reset"
-				value="Reset" />
-		</p>
-		</h2>
-	</form>
-</body>
+    <head>
+    
+    </head>
+    <body>
+       <div style="text-align:center">
+        <h3>------------Login Page-----------</h3>
+     <form  modelAttribute="login" action="login" method="post">
+           
+           <div class="form-group">
+                   <label for="name">Username:</label>
+                   <input path="name" type="text" class="form-control" id="name" placeholder="Enter username" name="name">
+               </div>
+               <div class="form-group">
+                   <label for="pwd">Password:</label>
+                   <input path="password" type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+               </div>
+               <button id="button" type="submit" class="btn btn-primary">Login</button>
+           </form>
+           ${message}
+          </div>
 </html>
