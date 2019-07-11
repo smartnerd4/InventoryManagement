@@ -20,13 +20,13 @@ public class LoginController {
 
 	@RequestMapping(value = "/")
 	public ModelAndView displayLogin() {
-		ModelAndView model = new ModelAndView("welcome");
+		ModelAndView model = new ModelAndView("welcomepage");
 		return model;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginpage", method = RequestMethod.GET)
 	public ModelAndView loginview(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("loginpage");
 		return model;
 
 	}
@@ -39,11 +39,11 @@ public class LoginController {
 			boolean isValidUser = LoginService.isValidUser(login.getName(), login.getPassword());
 			if (isValidUser) {
 				System.out.println("User Login Successful");
-				model = new ModelAndView("home");
+				model = new ModelAndView("homepage");
 				model.addObject("name", login.getName());
 			} else {
 
-				model = new ModelAndView("login");
+				model = new ModelAndView("loginpage");
 				model.addObject("message", "Invalid credentials!!");
 			}
 
@@ -51,6 +51,12 @@ public class LoginController {
 			e.printStackTrace();
 		}
 
+		return model;
+	}
+
+	@RequestMapping(value = "/generateofferletter")
+	public ModelAndView generateofferletter() {
+		ModelAndView model = new ModelAndView("generateofferletter");
 		return model;
 	}
 }
