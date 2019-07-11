@@ -10,9 +10,5 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<welcome-file-list>
-	<welcome-file>/views/welcome.jsp</welcome-file>
-	</welcome-file-list>
-
 </web-app>
 
