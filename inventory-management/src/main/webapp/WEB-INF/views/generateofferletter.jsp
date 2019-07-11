@@ -1,12 +1,34 @@
-<%@ include file="/WEB-INF/css/header1.jsp"%>
+<%@ include file="/WEB-INF/css/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<title>Offer Letter</title>
-</head>
+<title>Smartnerd</title>
+
 <style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=text], input[type=password] {
+	width: 60%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 30%;
+}
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -30,27 +52,32 @@ button {
 	width: 30%;
 }
 </style>
-
+</head>
 <body>
-	<center>
-		<h2>Generate Offer Letter</h2>
+	<div style="text-align: center">
+		<h1>Offer Letter</h1>
+		<form modelAttribute="Offer" action="generateofferletter" method="post">
 
-		<form modelAttribute="generateol" action="" method="post">
-			Enter Employee-Name : <input type="text" path="ename"
-				placeholder="Enter Employee-name" /> <br> Enter
-			Date_of_Joining : <input type="date" path="doj"
-				placeholder="Enter Date Of Joining" /> <br>
-				Enter CTC : <input type="text" path="ctc"
-				placeholder="Enter CTC" /> <br>
-			<h4>
-				Enter Role : <select name="role">
-					<option value="employee">Employee</option>
-					<option value="admin">Admin</option>
-					<option value="other">Other</option>
-			</h4>
-			</select> <br><br>
-			<button type="submit" value="submit">Generate Offer Letter</button>
-		</form>
-	</center>
+			<div class="form-group">
+				<label for="ename">Username:</label> <input path="ename" type="text"
+					class="form-control" id="ename" name="ename">
+			</div>
+ 				<div class="form-group"> 
+ 				<label for="doj">Doj:</label> <input path="doj" type="date" 
+ 					class="form-control" id="doj" > 
+ 			</div> 
+ 			<div class="form-group"> 
+ 				<label for="ctc">ctc:</label> <input path="ctc" type="text"
+ 					class="form-control" id="ctc"> 
+			</div> 
+ 			<div class="form-group"> 
+ 				<label for="role">role:</label> <input path="role" type="text" 
+					class="form-control" id="role"> 
+ 			</div> 
+			
+			<button id="button" type="submit" class="btn btn-primary">Generate Offer Letter</button>
+</form>
+		${m}
+	</div>
 </body>
 </html>

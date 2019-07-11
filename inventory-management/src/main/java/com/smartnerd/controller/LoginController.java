@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smartnerd.model.Login;
+import com.smartnerd.model.Offer;
 import com.smartnerd.service.Service;
 
 @Controller
 public class LoginController {
 	@Autowired
 	private Service LoginService;
+	
 
 	@RequestMapping(value = "/")
 	public ModelAndView displayLogin() {
@@ -53,10 +55,40 @@ public class LoginController {
 
 		return model;
 	}
-
-	@RequestMapping(value = "/generateofferletter")
-	public ModelAndView generateofferletter() {
+	@RequestMapping(value = "/generateofferletter", method = RequestMethod.GET)
+	public ModelAndView generateofferletter(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView("generateofferletter");
 		return model;
-	}
+		}
+	@RequestMapping(value = "/generateofferletter", method = RequestMethod.POST)
+	public ModelAndView generateofferletterresponse(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("Offer") Offer offer) {
+		ModelAndView model = null;
+		
+		model = new ModelAndView("generateofferletter");
+		System.out.println("hi"+offer.getEname()+offer.getDoj()+offer.getDoj()+offer.getRole());
+		model.addObject("m", offer.getEname());
+	//	model.addObject("m", offer.getDoj());
+	//	model.addObject("m", offer.getDoj());
+		model.addObject("m", offer.getRole());
+		return model;
+//		try {
+//			boolean isValidUser = LoginService.isValidUser(login.getName(), login.getPassword());
+//			if (isValidUser) {
+//				System.out.println("User Login Successful");
+//				model = new ModelAndView("homepage");
+//				model.addObject("name", login.getName());
+//			} else {
+//
+//				model = new ModelAndView("loginpage");
+//				model.addObject("message", "Invalid credentials!!");
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return model;
+//	}
+}
 }
