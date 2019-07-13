@@ -1,36 +1,13 @@
-<%@ include file="/WEB-INF/css/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@ include file="/WEB-INF/css/header0.css"%>
 <html>
 <head>
 <title>Smartnerd Login</title>
 </head>
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-input[type=text], input[type=password] {
-	width: 60%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-}
-
-button {
-	background-color: #4CAF50;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 30%;
-}
-</style>
-
+<%@ include file="/WEB-INF/css/body.css"%>
 <body>
 	<div style="text-align: center">
 		<h1>LOGIN PAGE</h1>
@@ -52,3 +29,4 @@ button {
 	</div>
 </body>
 </html>
+<%@ include file="/WEB-INF/css/footer.css"%>

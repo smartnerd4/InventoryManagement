@@ -1,0 +1,20 @@
+<html>
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  color: black;
+  text-align: center;
+}
+</style>
+
+<body>
+<div class="footer">
+<p>&copy; 2019 Smartnerd.in</p>
+</div>
+</body>
+
+</html>

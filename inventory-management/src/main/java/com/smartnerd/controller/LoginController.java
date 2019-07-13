@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smartnerd.model.Login;
@@ -15,10 +16,10 @@ import com.smartnerd.model.Offer;
 import com.smartnerd.service.Service;
 
 @Controller
+@SessionAttributes
 public class LoginController {
 	@Autowired
 	private Service LoginService;
-	
 
 	@RequestMapping(value = "/")
 	public ModelAndView displayLogin() {
@@ -42,6 +43,8 @@ public class LoginController {
 			if (isValidUser) {
 				System.out.println("User Login Successful");
 				model = new ModelAndView("homepage");
+				// model.addObject("thought");
+				// session.removeAttribute(“parameter name”);
 				model.addObject("name", login.getName());
 			} else {
 
@@ -55,21 +58,23 @@ public class LoginController {
 
 		return model;
 	}
+
 	@RequestMapping(value = "/generateofferletter", method = RequestMethod.GET)
 	public ModelAndView generateofferletter(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView("generateofferletter");
 		return model;
-		}
+	}
+
 	@RequestMapping(value = "/generateofferletter", method = RequestMethod.POST)
 	public ModelAndView generateofferletterresponse(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("Offer") Offer offer) {
 		ModelAndView model = null;
-		
+
 		model = new ModelAndView("generateofferletter");
-		System.out.println("hi"+offer.getEname()+offer.getDoj()+offer.getDoj()+offer.getRole());
+		System.out.println("hi" + offer.getEname() + offer.getDoj() + offer.getDoj() + offer.getRole());
 		model.addObject("m", offer.getEname());
-	//	model.addObject("m", offer.getDoj());
-	//	model.addObject("m", offer.getDoj());
+		// model.addObject("m", offer.getDoj());
+		// model.addObject("m", offer.getDoj());
 		model.addObject("m", offer.getRole());
 		return model;
 //		try {
@@ -90,5 +95,5 @@ public class LoginController {
 //
 //		return model;
 //	}
-}
+	}
 }
