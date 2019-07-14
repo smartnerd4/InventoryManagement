@@ -26,4 +26,16 @@ public class DaoImp implements Dao {
 	       temp=sessionFactory;
 	        return temp;
 	}
+
+	public  SessionFactory getSessionFactoryemp(){
+		SessionFactory temp=null;
+	      Configuration configuration = new Configuration();
+	        configuration.configure("employee.cfg.xml");
+	        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+	                configuration.getProperties()). build();
+	        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	      
+	       temp=sessionFactory;
+	        return temp;
+	}
 }

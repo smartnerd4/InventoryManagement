@@ -4,19 +4,27 @@ import java.util.Date;
 
 public class Offer {
 private String ename;
-private Date doj;
+private String doj;
 private int ctc;
 private String role;
+private String file;
+public String getFile() {
+	return file;
+}
+public void setFile(String file) {
+	this.file = file;
+}
 public String getEname() {
 	return ename;
 }
 public void setEname(String ename) {
 	this.ename = ename;
 }
-public Date getDoj() {
+
+public String getDoj() {
 	return doj;
 }
-public void setDoj(Date doj) {
+public void setDoj(String doj) {
 	this.doj = doj;
 }
 public int getCtc() {

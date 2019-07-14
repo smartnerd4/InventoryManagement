@@ -2,12 +2,26 @@ package com.smartnerd.serviceImp;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.poi.hdf.extractor.WordDocument;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableCell;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,15 +29,28 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.Chunk;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.FontFactory;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileInputStream;
+
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import org.apache.poi.xwpf.converter.pdf.PdfConverter;
+import org.apache.poi.xwpf.converter.pdf.PdfOptions;
+
+import com.itextpdf.text.pdf.parser.Path;
+import com.itextpdf.text.pdf.parser.clipper.Paths;
 import com.smartnerd.dao.Dao;
 import com.smartnerd.model.User;
+import com.smartnerd.model.employee;
 import com.smartnerd.service.Service;
 @Repository
 public class ServiceImp implements Service{
@@ -45,91 +72,92 @@ public class ServiceImp implements Service{
 		}
 return false;
     }
-	public boolean generatepdf(String name,Date date,int ctc,String role)
+	
+	public boolean generateofferletter(String ename, String doj, int ctc, String role,String file)
+			throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+	
+String ctcc=String.valueOf(ctc);
+		try {
+			XWPFDocument doc = new XWPFDocument(OPCPackage.open("d:\\Input.docx"));
+			for (XWPFParagraph p : doc.getParagraphs()) {
+				
+				List<XWPFRun> runs = p.getRuns();
+				
+				if (runs != null) {
+					for (XWPFRun r : runs) {
+						
+						String text = r.getText(0);
+						
+						if (text != null && text.contains("<varname>")) {
+							text = text.replace("<varname>",ename);
+							r.setText(text, 0);
+						}
+						if (text != null && text.contains("<varrole>")) {
+							text = text.replace("<varrole>",role);
+							r.setText(text, 0);
+						}
+						if (text != null && text.contains("<vardoj>")) {
+							text = text.replace("<vardoj>",doj);
+							r.setText(text, 0);
+						}
+						if (text != null && text.contains("<varctc")) {
+							text = text.replace("<varctc>",ctcc);
+							r.setText(text, 0);
+							
+						}
+						
+					}
+				}
+			}
+
+			for (XWPFTable tbl : doc.getTables()) {
+				for (XWPFTableRow row : tbl.getRows()) {
+					for (XWPFTableCell cell : row.getTableCells()) {
+						for (XWPFParagraph p : cell.getParagraphs()) {
+							for (XWPFRun r : p.getRuns()) {
+								String text = r.getText(0);
+								if (text != null && text.contains("a1")) {
+									text = text.replace("a1", "abcd");
+									r.setText(text, 0);
+								}
+							}
+						}
+					}
+				}
+			}
+		      doc.write(new FileOutputStream("d:\\output.docx"));
+		    
+	     } finally {InputStream doc = new FileInputStream(new File("d:\\output.docx"));
+			XWPFDocument document = new XWPFDocument(doc);
+			PdfOptions options = PdfOptions.create();
+			OutputStream out = new FileOutputStream(new File(file));
+
+			PdfConverter.getInstance().convert(document, out, options);
+
+	     }
+return true;
+	    }
+	public boolean valid(String name)
 	{
-		  Document document = new Document();
-		  	Font normal = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.NORMAL);
-		  	Font bold = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.BOLD);
-		      try
-		      {
-		         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("HelloWorld.pdf"));
-		       
-		         
-		        
-		         document.open();
-		         document.add(new Paragraph("April 26, 2019",normal));
-		         document.add(new Paragraph("\n"));
-		     
-		         document.add(new Paragraph("Subject: Employment Offer Letter - Confidential ",normal));
-		         document.add(new Paragraph("\n"));
-
-		         document.add(new Paragraph("Dear "+name,normal));
-		         document.add(new Paragraph("\n"));
-
-		         Chunk c1=new Chunk("Congratulations! On behalf of ",normal);
-		         Chunk c2=new Chunk("Smartnerd ",bold);
-		         Chunk c3=new Chunk("(“Company”), it is my pleasure to extend our offer of employment to you. This offer and the opportunity it represents is extended with great confidence in your abilities. You made a favourable impression with everyone you met, and we are excited with the prospect of you joining the Company.\r\n\n",normal);
-		         Chunk c4=new Chunk("If you accept this offer of employment, you will be appointed as a "+role+" in Hyderabad. Your appointment date is effective from your date of joining i.e.",normal);
-		         Chunk c5=new Chunk(""+date,bold);
-		         Chunk c6=new Chunk(". You should report for joining no later than 9:30 A.M. on your joining date. \r\n\n",normal); 
-		         Chunk c7=new Chunk("Your all-inclusive compensation, on a cost to the company basis, is ",normal);
-		         Chunk c8=new Chunk("Rs."+ctc,bold);
-		         Chunk c9=new Chunk(", payable as a monthly salary less applicable taxes and deductions. Your compensation details are confidential, and you may discuss it only with the undersigned individual in case of any clarification.",normal);
-		         Chunk c10=new Chunk("Annexure 1 – Compensation CTC ",bold);
-		         Chunk c11=new Chunk("provides a breakup and explanation of the components of your compensation.\r\n\n",normal);
-		         Chunk c12=new Chunk("Your employment at Smartnerd will be governed by the terms and conditions in ",normal);
-		         Chunk c13=new Chunk("Annexure 2 - Employment Agreement ",bold);
-		         Chunk c14=new Chunk("as well as all rules, regulations, guidelines, policies and practices of the Company, which may be amended from time to time. Please read the Employment Agreement carefully as it becomes binding on you on your date of joining. \r\n\n",normal);  
-		         Chunk c15=new Chunk("On your date of joining, you are required to submit the documents listed in the attached ",normal);
-		         Chunk c16=new Chunk("Joining Documents Checklist.",bold); 
-		         Chunk c17=new Chunk("Please notify us immediately if there are any issues with your documentation. \r\n\n",normal);
-		         Chunk c18=new Chunk("We look forward to having you join the Company’s team of outstanding professionals. If you wish to discuss any detail of this offer, please feel free to contact me. \r\n\n",normal); 
-		         Chunk c19=new Chunk("To accept this offer and the appointment terms and conditions, please sign and date below. \r\n\n",normal);
-		         Chunk c20=new Chunk("\t                                                               For Scientella Electronics & Electricals Ltd,\r\n",bold); 
-		         Chunk c21=new Chunk("Manager – Talent Acquisition  ",normal);
-		        												
-
-		        												 Paragraph p1 = new Paragraph();
-
-					p1.add(c1);
-					p1.add(c2);
-					p1.add(c3);
-					p1.add(c4);
-					p1.add(c5);
-					p1.add(c6);
-					p1.add(c7);
-					p1.add(c8);
-					p1.add(c9);
-					p1.add(c10);
-					p1.add(c11);
-					p1.add(c12);
-					p1.add(c13);
-					p1.add(c14);
-					p1.add(c15);
-					p1.add(c16);
-					p1.add(c17);
-					p1.add(c18);
-					p1.add(c19);
-					p1.add(c20);
-					p1.add(c21);
-					
-		        												 
-		        												 
-
-		document.add(p1);
-		         
-		         document.close();
-		         writer.close();
-		      } catch (DocumentException e)
-		      {
-		         e.printStackTrace();
-		      } catch (FileNotFoundException e)
-		      {
-		         e.printStackTrace();
-		      }
-		   
-		
-		return true;
+		SessionFactory sf=dao.getSessionFactoryemp();
+		Session s=sf.openSession();
+		Criteria cr = s.createCriteria(employee.class);
+		cr.add(Restrictions.eq("EMP_NAME",name));
+		List results = cr.list();
+		if(results.size()>0)
+		{
+			return true;
+		}
+return false;
+    }
+	public employee EmployeeUsers(String emp_NAME)
+	{
+		SessionFactory sf=dao.getSessionFactoryemp();
+		Session s=sf.openSession();
+		Criteria cr = s.createCriteria(employee.class);
+		cr.add(Restrictions.eq("EMP_NAME",emp_NAME));
+		employee employee=(employee)cr.uniqueResult();
+		return employee;
 	}
+	   }
 
-}

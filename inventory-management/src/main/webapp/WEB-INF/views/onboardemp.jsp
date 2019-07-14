@@ -15,13 +15,29 @@
 		<form modelAttribute="" action="" method="post">
 
 			<div class="form-group">
-				<label for="name">Enter Employee-name:</label> <input path="name" type="text"
-					class="form-control" id="name" placeholder="Enter Employee-name"
-					name="name">
+				<label for="EMP_NAME">Enter Employee-name:</label> <input path="name" type="text"
+					class="form-control" id="name" placeholder="Enter Employee-name" name="EMP_NAME">
 			</div>
-			<button id="button" type="submit" class="btn btn-primary">Login</button>
+			<button id="button" type="submit" class="btn btn-primary">Search</button>
+			
 		</form>
 	</div>
+	${eid}</hr>
+	${ename}</hr>
+	${eemail}</hr>
+	${edid}</hr>
+	${edoj}</hr>
+	${epan}</hr>
+	${eadar}</hr>
+	${ewexp}</hr>
+	${epro}</hr>
+	${ereda}</hr>
+	${erid}</hr>
+	${emid}</hr>
+	${esysDate}</hr>
+	${esysLastDate}</hr>
+	
+	
 </body>
 </html>
 <%@ include file="/WEB-INF/css/footer.css"%>
