@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 
-import com.smartnerd.model.employee;
+import com.smartnerd.model.Employee;
 
 public interface Service {
 
@@ -20,6 +20,6 @@ public interface Service {
 
 	public boolean valid(String name);
 
-	public employee EmployeeUsers(String emp_NAME); 
+	public Employee EmployeeUsers(String emp_NAME); 
 
 }

@@ -14,6 +14,7 @@ import com.smartnerd.dao.Dao;
 @Repository
 @Transactional
 public class DaoImp implements Dao {
+	
 	private  SessionFactory sessionFactory = null;
 	public  SessionFactory getSessionFactory(){
 		SessionFactory temp=null;

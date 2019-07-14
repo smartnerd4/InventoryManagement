@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smartnerd.model.Employee;
 import com.smartnerd.model.Login;
 import com.smartnerd.model.Offer;
-import com.smartnerd.model.employee;
+
 import com.smartnerd.service.Service;
 
 @Controller
@@ -60,62 +61,6 @@ public class LoginController {
 
 		return model;
 	}
-	@RequestMapping(value = "/generateofferletter", method = RequestMethod.GET)
-	public ModelAndView generateofferletter(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("generateofferletter");
-		return model;
-		}
-	@RequestMapping(value = "/generateofferletter", method = RequestMethod.POST)
-	public ModelAndView generateofferletterresponse(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("Offer") Offer offer) throws InvalidFormatException, IOException {
-		ModelAndView model = null;
-		model = new ModelAndView("generateofferletter");
-		if(LoginService.generateofferletter(offer.getEname(), offer.getDoj(),offer.getCtc(),offer.getRole(),offer.getFile()))
-		{
-			model.addObject("m","Successfull");
-			return model;
-		}
-		model.addObject("m","UnSuccessfull");
-		return model;
-	}
-	@RequestMapping(value = "/onboardemp", method = RequestMethod.GET)
-	public ModelAndView onboar(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("onboardemp");
-		return model;
-		}
-	@RequestMapping(value = "/onboardemp", method = RequestMethod.POST)
-	public ModelAndView onboard(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("emp") employee emp) throws InvalidFormatException, IOException {
-		ModelAndView model = null;
-		
-	
-	if(LoginService.valid(emp.getEMP_NAME()))
-				{
-		model = new ModelAndView("onboardemp");
-		employee empl=LoginService.EmployeeUsers(emp.getEMP_NAME());
-		model.addObject("eid", empl.getEMP_ID());
-		model.addObject("ename", empl.getEMP_NAME());
-		model.addObject("eemail", empl.getEMAIL_ID());
-		model.addObject("edid", empl.getDEPT_ID());
-		model.addObject("edoj", empl.getDOJ());
-		model.addObject("epan", empl.getPAN_NUMBER());
-		model.addObject("eadar", empl.getAADHAR_NUMBER());
-		model.addObject("ewexp", empl.getWORK_EXP());
-		model.addObject("epro", empl.getPREV_ORG());
-		model.addObject("ereda", empl.getRELEV_DATE());
-		model.addObject("erid", empl.getREPORTING_ID());
-		model.addObject("emid", empl.getMANAGER_ID());
-		model.addObject("esysDate", empl.getSYS_CRE_DATE());
-		model.addObject("esysLastDate", empl.getSYS_LST_MOD_DATE());
-		
-		
-			return model;
-				}
-		
-		model = new ModelAndView("onboardemp");
-			model.addObject("dname", "UnSuccessfull");
-	
-		return model;
-	
-		
-	}
 }
+	
+	

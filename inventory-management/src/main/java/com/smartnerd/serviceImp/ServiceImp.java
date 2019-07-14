@@ -49,8 +49,8 @@ import org.apache.poi.xwpf.converter.pdf.PdfOptions;
 import com.itextpdf.text.pdf.parser.Path;
 import com.itextpdf.text.pdf.parser.clipper.Paths;
 import com.smartnerd.dao.Dao;
+import com.smartnerd.model.Employee;
 import com.smartnerd.model.User;
-import com.smartnerd.model.employee;
 import com.smartnerd.service.Service;
 @Repository
 public class ServiceImp implements Service{
@@ -141,8 +141,8 @@ return true;
 	{
 		SessionFactory sf=dao.getSessionFactoryemp();
 		Session s=sf.openSession();
-		Criteria cr = s.createCriteria(employee.class);
-		cr.add(Restrictions.eq("EMP_NAME",name));
+		Criteria cr = s.createCriteria(Employee.class);
+		cr.add(Restrictions.eq("employee_Name",name));
 		List results = cr.list();
 		if(results.size()>0)
 		{
@@ -150,13 +150,13 @@ return true;
 		}
 return false;
     }
-	public employee EmployeeUsers(String emp_NAME)
+	public Employee EmployeeUsers(String emp_NAME)
 	{
 		SessionFactory sf=dao.getSessionFactoryemp();
 		Session s=sf.openSession();
-		Criteria cr = s.createCriteria(employee.class);
-		cr.add(Restrictions.eq("EMP_NAME",emp_NAME));
-		employee employee=(employee)cr.uniqueResult();
+		Criteria cr = s.createCriteria(Employee.class);
+		cr.add(Restrictions.eq("employee_Name",emp_NAME));
+		Employee employee=(Employee)cr.uniqueResult();
 		return employee;
 	}
 	   }

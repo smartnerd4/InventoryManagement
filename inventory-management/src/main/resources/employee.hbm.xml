@@ -3,51 +3,51 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.employee" table="EMPLOYEE_DETAILS">
-		<id name="EMP_ID" type="string">
+	<class name="com.smartnerd.model.Employee" table="EMPLOYEE_DETAILS">
+		<id name="employee_Id" type="string">
 			<column name="EMP_ID" length="10" not-null="true" />
 			<generator class="assigned" />
 		</id>
-		<property name="EMP_NAME" type="string">
+		<property name="employee_Name" type="string">
 			<column name="EMP_NAME" length="30" not-null="false" />
 		</property>
-		<property name="EMAIL_ID" type="string">
+		<property name="employee_Email" type="string">
 			<column name="EMAIL_ID" length="30" not-null="false" />
 		</property>
-		<property name="DEPT_ID" type="string">
+		<property name="dept_Id" type="string">
 			<column name="DEPT_ID" length="10" not-null="false" />
 		</property>
-		<property name="DOJ" type="date">
+		<property name="doj" type="date">
 			<column name="DOJ" length="7" not-null="false" />
 		</property>
-		<property name="PAN_NUMBER" type="string">
+		<property name="pan_Number" type="string">
 			<column name="PAN_NUMBER" length="20" not-null="false" />
 		</property>
-		<property name="AADHAR_NUMBER" type="string">
+		<property name="aadar_Number" type="string">
 			<column name="AADHAR_NUMBER" length="20" not-null="false" />
 		</property>
-		<property name="WORK_EXP" type="int">
+		<property name="work_Experience" type="int">
 			<column name="WORK_EXP"  not-null="false" />
 		</property>
-		<property name="PREV_ORG" type="string">
+		<property name="previous_Organisation" type="string">
 			<column name="PREV_ORG" length="20" not-null="false" />
 		</property>
-		<property name="RELEV_DATE" type="date">
+		<property name="releve_Date" type="date">
 			<column name="RELEV_DATE" length="7" not-null="false" />
 		</property>
-		<property name="REPORTING_ID" type="string">
+		<property name="reporting_Id" type="string">
 			<column name="REPORTING_ID" length="10" not-null="false" />
 		</property>
-		<property name="MANAGER_ID" type="string">
+		<property name="manager_Id" type="string">
 			<column name="MANAGER_ID" length="10" not-null="false" />
 		</property>
-		<property name="HIGH_QUAL" type="string">
+		<property name="education_Qualification" type="string">
 			<column name="HIGH_QUAL" length="20" not-null="false" />
 		</property>
-		<property name="SYS_CRE_DATE" type="date">
+		<property name="system_Created_Date" type="date">
 			<column name="SYS_CRE_DATE" length="7" not-null="false" />
 		</property>
-		<property name="SYS_LST_MOD_DATE" type="date">
+		<property name="system_Last_Modified_Date" type="date">
 			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
 		</property>
 	</class>

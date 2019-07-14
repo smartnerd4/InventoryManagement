@@ -2,112 +2,112 @@ package com.smartnerd.model;
 
 import java.util.Date;
 
-public class employee {
-	private String EMP_ID;
-	private String EMP_NAME;
-	private String EMAIL_ID;
-	private String DEPT_ID;
-	private Date DOJ;
-	private String PAN_NUMBER;
-	private String AADHAR_NUMBER;
-	private Integer WORK_EXP;
-	private String PREV_ORG;
-	private Date RELEV_DATE;
-	private String REPORTING_ID;
-	private String MANAGER_ID;
-	private String HIGH_QUAL;
-	private Date SYS_CRE_DATE;
-	private Date SYS_LST_MOD_DATE;
-	public String getEMP_ID() {
-		return EMP_ID;
+public class Employee {
+	private String employee_Id;
+	private String employee_Name;
+	private String employee_Email;
+	private String dept_Id;
+	private Date doj;
+	private String pan_Number;
+	private String aadar_Number;
+	private Integer work_Experience;
+	private String previous_Organisation;
+	private Date releve_Date;
+	private String reporting_Id;
+	private String manager_Id;
+	private String education_Qualification;
+	private Date system_Created_Date;
+	private Date system_Last_Modified_Date;
+	public String getEmployee_Id() {
+		return employee_Id;
 	}
-	public void setEMP_ID(String eMP_ID) {
-		EMP_ID = eMP_ID;
+	public void setEmployee_Id(String employee_Id) {
+		this.employee_Id = employee_Id;
 	}
-	public String getEMP_NAME() {
-		return EMP_NAME;
+	public String getEmployee_Name() {
+		return employee_Name;
 	}
-	public void setEMP_NAME(String eMP_NAME) {
-		EMP_NAME = eMP_NAME;
+	public void setEmployee_Name(String employee_Name) {
+		this.employee_Name = employee_Name;
 	}
-	public String getEMAIL_ID() {
-		return EMAIL_ID;
+	public String getEmployee_Email() {
+		return employee_Email;
 	}
-	public void setEMAIL_ID(String eMAIL_ID) {
-		EMAIL_ID = eMAIL_ID;
+	public void setEmployee_Email(String employee_Email) {
+		this.employee_Email = employee_Email;
 	}
-	public String getDEPT_ID() {
-		return DEPT_ID;
+	public String getDept_Id() {
+		return dept_Id;
 	}
-	public void setDEPT_ID(String dEPT_ID) {
-		DEPT_ID = dEPT_ID;
+	public void setDept_Id(String dept_Id) {
+		this.dept_Id = dept_Id;
 	}
-	public Date getDOJ() {
-		return DOJ;
+	public Date getDoj() {
+		return doj;
 	}
-	public void setDOJ(Date dOJ) {
-		DOJ = dOJ;
+	public void setDoj(Date doj) {
+		this.doj = doj;
 	}
-	public String getPAN_NUMBER() {
-		return PAN_NUMBER;
+	public String getPan_Number() {
+		return pan_Number;
 	}
-	public void setPAN_NUMBER(String pAN_NUMBER) {
-		PAN_NUMBER = pAN_NUMBER;
+	public void setPan_Number(String pan_Number) {
+		this.pan_Number = pan_Number;
 	}
-	public String getAADHAR_NUMBER() {
-		return AADHAR_NUMBER;
+	public String getAadar_Number() {
+		return aadar_Number;
 	}
-	public void setAADHAR_NUMBER(String aADHAR_NUMBER) {
-		AADHAR_NUMBER = aADHAR_NUMBER;
+	public void setAadar_Number(String aadar_Number) {
+		this.aadar_Number = aadar_Number;
 	}
-	
-	public Integer getWORK_EXP() {
-		return WORK_EXP;
+	public Integer getWork_Experience() {
+		return work_Experience;
 	}
-	public void setWORK_EXP(Integer wORK_EXP) {
-		WORK_EXP = wORK_EXP;
+	public void setWork_Experience(Integer work_Experience) {
+		this.work_Experience = work_Experience;
 	}
-	public String getPREV_ORG() {
-		return PREV_ORG;
+	public String getPrevious_Organisation() {
+		return previous_Organisation;
 	}
-	public void setPREV_ORG(String pREV_ORG) {
-		PREV_ORG = pREV_ORG;
+	public void setPrevious_Organisation(String previous_Organisation) {
+		this.previous_Organisation = previous_Organisation;
 	}
-	public Date getRELEV_DATE() {
-		return RELEV_DATE;
+	public Date getReleve_Date() {
+		return releve_Date;
 	}
-	public void setRELEV_DATE(Date rELEV_DATE) {
-		RELEV_DATE = rELEV_DATE;
+	public void setReleve_Date(Date releve_Date) {
+		this.releve_Date = releve_Date;
 	}
-	public String getREPORTING_ID() {
-		return REPORTING_ID;
+	public String getReporting_Id() {
+		return reporting_Id;
 	}
-	public void setREPORTING_ID(String rEPORTING_ID) {
-		REPORTING_ID = rEPORTING_ID;
+	public void setReporting_Id(String reporting_Id) {
+		this.reporting_Id = reporting_Id;
 	}
-	public String getMANAGER_ID() {
-		return MANAGER_ID;
+	public String getManager_Id() {
+		return manager_Id;
 	}
-	public void setMANAGER_ID(String mANAGER_ID) {
-		MANAGER_ID = mANAGER_ID;
+	public void setManager_Id(String manager_Id) {
+		this.manager_Id = manager_Id;
 	}
-	public String getHIGH_QUAL() {
-		return HIGH_QUAL;
+	public String getEducation_Qualification() {
+		return education_Qualification;
 	}
-	public void setHIGH_QUAL(String hIGH_QUAL) {
-		HIGH_QUAL = hIGH_QUAL;
+	public void setEducation_Qualification(String education_Qualification) {
+		this.education_Qualification = education_Qualification;
 	}
-	public Date getSYS_CRE_DATE() {
-		return SYS_CRE_DATE;
+	public Date getSystem_Created_Date() {
+		return system_Created_Date;
 	}
-	public void setSYS_CRE_DATE(Date sYS_CRE_DATE) {
-		SYS_CRE_DATE = sYS_CRE_DATE;
+	public void setSystem_Created_Date(Date system_Created_Date) {
+		this.system_Created_Date = system_Created_Date;
 	}
-	public Date getSYS_LST_MOD_DATE() {
-		return SYS_LST_MOD_DATE;
+	public Date getSystem_Last_Modified_Date() {
+		return system_Last_Modified_Date;
 	}
-	public void setSYS_LST_MOD_DATE(Date sYS_LST_MOD_DATE) {
-		SYS_LST_MOD_DATE = sYS_LST_MOD_DATE;
+	public void setSystem_Last_Modified_Date(Date system_Last_Modified_Date) {
+		this.system_Last_Modified_Date = system_Last_Modified_Date;
 	}
+
 	
 }
