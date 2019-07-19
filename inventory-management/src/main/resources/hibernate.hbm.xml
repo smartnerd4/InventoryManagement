@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.User" table="SN_USER">
+	<class name="com.smartnerd.model.UserModel" table="SN_USER">
 		<id name="USER_ID" type="string">
 			<column name="USER_ID" length="20" not-null="true" />
 			<generator class="assigned" />

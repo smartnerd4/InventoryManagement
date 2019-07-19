@@ -2,7 +2,7 @@ package com.smartnerd.model;
 
 import java.util.Date;
 
-public class User {
+public class UserModel {
 	private String USER_ID;
 
 	private String USER_NAME;

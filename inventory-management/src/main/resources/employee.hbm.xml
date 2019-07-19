@@ -3,10 +3,10 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.Employee" table="EMPLOYEE_DETAILS">
+	<class name="com.smartnerd.model.OnboardEmployeeModel" table="EMPLOYEE_DETAILS">
 		<id name="employee_Id" type="string">
 			<column name="EMP_ID" length="10" not-null="true" />
-			<generator class="assigned" />
+			<generator class="com.smartnerd.idgenerator.CustomIDGenerator" />
 		</id>
 		<property name="employee_Name" type="string">
 			<column name="EMP_NAME" length="30" not-null="false" />
@@ -23,7 +23,7 @@
 		<property name="pan_Number" type="string">
 			<column name="PAN_NUMBER" length="20" not-null="false" />
 		</property>
-		<property name="aadar_Number" type="string">
+		<property name="aadhar_Number" type="string">
 			<column name="AADHAR_NUMBER" length="20" not-null="false" />
 		</property>
 		<property name="work_Experience" type="int">
@@ -32,7 +32,7 @@
 		<property name="previous_Organisation" type="string">
 			<column name="PREV_ORG" length="20" not-null="false" />
 		</property>
-		<property name="releve_Date" type="date">
+		<property name="relev_Date" type="date">
 			<column name="RELEV_DATE" length="7" not-null="false" />
 		</property>
 		<property name="reporting_Id" type="string">

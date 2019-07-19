@@ -11,22 +11,26 @@
 <body>
 	<div style="text-align: center">
 		<h1>LOGIN PAGE</h1>
-		<form modelAttribute="login" action="login" method="post">
+		<form modelAttribute="login" action="loginpage" method="post">
 
 			<div class="form-group">
 				<label for="name">Username:</label> <input path="name" type="text"
 					class="form-control" id="name" placeholder="Enter Username"
-					name="name">
+					name="name" autofocus required
+					pattern="[a-zA-Z ]*" title="Username cannot contain special characters/numbers" ></input>
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password:</label> <input path="password"
 					type="password" class="form-control" id="pwd"
-					placeholder="Enter Password" name="password">
+					placeholder="Enter Password" name="password" required
+					oninvalid="this.setCustomValidity('Password cannot be empty')"
+					oninput="setCustomValidity('')"></input>
 			</div>
 			<button id="button" type="submit" class="btn btn-primary">Login</button>
 		</form>
 		${message}
 	</div>
+
 </body>
 </html>
 <%@ include file="/WEB-INF/css/footer.css"%>

@@ -2,7 +2,7 @@ package com.smartnerd.model;
 
 import java.util.Date;
 
-public class Offer {
+public class OfferLetterModel {
 private String ename;
 private String doj;
 private int ctc;

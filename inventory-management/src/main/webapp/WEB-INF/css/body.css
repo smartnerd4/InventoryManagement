@@ -1,15 +1,24 @@
 <style>
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-input {
+input, select {
 	width: 25%;
 	padding: 12px 12px;
 	margin: 6px 0;
 	display: inline-block;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
+	float: center;
+}
+
+label {
+	display: inline-block;
+	float: center;
+	width: 250px;
+	text-align: right;
 }
 
 button {

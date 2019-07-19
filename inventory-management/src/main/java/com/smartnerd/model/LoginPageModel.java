@@ -1,6 +1,6 @@
 package com.smartnerd.model;
 
-public class Login {
+public class LoginPageModel {
 	private String name;
 	private String password;
 
