@@ -5,15 +5,16 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #c0c0c0;
   color: black;
   text-align: center;
 }
+
 </style>
 
 <body>
 <div class="footer">
-<p>&copy; 2019 Smartnerd.in</p>
+&copy; 2019 Smartnerd.in
 </div>
 </body>
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smartnerd.model.OnboardEmployeeModel" table="EMPLOYEE_DETAILS">
+		<id name="employee_Id" type="string">
+			<column name="EMP_ID" length="10" not-null="true" />
+			<generator class="com.smartnerd.idgenerator.CustomIDGenerator" />
+		</id>
+		<property name="employee_Name" type="string">
+			<column name="EMP_NAME" length="30" not-null="false" />
+		</property>
+		<property name="employee_Email" type="string">
+			<column name="EMAIL_ID" length="30" not-null="false" />
+		</property>
+		<property name="dept_Id" type="string">
+			<column name="DEPT_ID" length="10" not-null="false" />
+		</property>
+		<property name="doj" type="date">
+			<column name="DOJ" length="7" not-null="false" />
+		</property>
+		<property name="pan_Number" type="string">
+			<column name="PAN_NUMBER" length="20" not-null="false" />
+		</property>
+		<property name="aadhar_Number" type="string">
+			<column name="AADHAR_NUMBER" length="20" not-null="false" />
+		</property>
+		<property name="work_Experience" type="int">
+			<column name="WORK_EXP"  not-null="false" />
+		</property>
+		<property name="previous_Organisation" type="string">
+			<column name="PREV_ORG" length="20" not-null="false" />
+		</property>
+		<property name="relev_Date" type="date">
+			<column name="RELEV_DATE" length="7" not-null="false" />
+		</property>
+		<property name="reporting_Id" type="string">
+			<column name="REPORTING_ID" length="10" not-null="false" />
+		</property>
+		<property name="manager_Id" type="string">
+			<column name="MANAGER_ID" length="10" not-null="false" />
+		</property>
+		<property name="education_Qualification" type="string">
+			<column name="HIGH_QUAL" length="20" not-null="false" />
+		</property>
+		<property name="system_Created_Date" type="date">
+			<column name="SYS_CRE_DATE" length="7" not-null="false" />
+		</property>
+		<property name="system_Last_Modified_Date" type="date">
+			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>
