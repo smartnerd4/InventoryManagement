@@ -1,18 +1,24 @@
 package com.smartnerd.dao;
 
+import java.io.IOException;
 import java.util.Date;
 
-import org.hibernate.SessionFactory;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.smartnerd.model.OnboardEmployeeModel;
-import com.smartnerd.model.UserModel;
+import com.google.zxing.WriterException;
+import com.smartnerd.model.Employee;
+import com.smartnerd.model.User;
 
 public interface Dao {
-	public UserModel isValidUser(String username, String password);
+	public User isValidUser(String username, String password);
 
-	public OnboardEmployeeModel onboardemployeemodel(String emp_NAME);
+	public Employee EmployeeUsers(String emp_NAME);
+
+
+
+	public boolean EmployeeInsertion(String employee_Name, String employee_Email, String dept_Id, Date doj,
+			String pan_Number, String aadar_Number, Integer work_Experience, String previous_Organisation,
+			Date releve_Date, String reporting_Id, String manager_Id, String education_Qualification,CommonsMultipartFile[] fileUpload, String bloodgroup, String tshirtsize, String emeraddr, String permaaddr, String placeofreporting, String gender,String phno)throws WriterException, IOException;
+	public Employee get(String id);
 	
-	public boolean addnewemployee(String employee_Name, String employee_Email, String dept_Id, Date doj,
-            String pan_Number, String aadhar_Number, Integer work_Experience, String previous_Organisation,
-            Date relev_Date, String reporting_Id, String manager_Id, String education_Qualification);
 }

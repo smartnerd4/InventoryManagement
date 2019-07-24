@@ -1,42 +1,34 @@
 package com.smartnerd.serviceImp;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
+
 import java.util.Date;
-import java.util.List;
+import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.poi.xwpf.usermodel.XWPFTable;
-import org.apache.poi.xwpf.usermodel.XWPFTableCell;
-import org.apache.poi.xwpf.usermodel.XWPFTableRow;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-//import com.itextpdf.text.Chunk;
-//import com.itextpdf.text.Document;
-//import com.itextpdf.text.DocumentException;
-//import com.itextpdf.text.Font;
-//import com.itextpdf.text.FontFactory;
-//import com.itextpdf.text.Paragraph;
-//import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import java.io.File;
-import java.io.FileInputStream;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-import org.apache.poi.xwpf.converter.pdf.PdfConverter;
-import org.apache.poi.xwpf.converter.pdf.PdfOptions;
-
-import com.itextpdf.text.pdf.parser.Path;
-import com.itextpdf.text.pdf.parser.clipper.Paths;
 import com.smartnerd.dao.Dao;
-import com.smartnerd.model.OnboardEmployeeModel;
-import com.smartnerd.model.UserModel;
+import com.smartnerd.model.Employee;
+import com.smartnerd.model.User;
 import com.smartnerd.service.Service;
 
 @Repository
@@ -45,91 +37,80 @@ public class ServiceImp implements Service {
 	private Dao dao;
 
 	public boolean isValidUser(String username, String password) {
-		UserModel umodel = dao.isValidUser(username, password);
-		if (umodel != null) {
+		User user = dao.isValidUser(username, password);
+		if (user != null) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean generateofferletter(String ename, String doj, int ctc, String role, String file)
+	public boolean generateofferletter(String ename, String doj, int ctc, String role, String file, float basicsalary,
+			float hra, float pf, float standarddeduction, float lta)
 			throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+		String nctc = NumberConverter.convertNumberToWords(ctc);
+		PDF_Generator.ConvertToPDF(ename, doj, ctc, nctc, role, file, basicsalary, hra, pf, standarddeduction, lta);
+		return true;
+	}
 
-		String ctcc = String.valueOf(ctc);
-		try {
-			XWPFDocument doc = new XWPFDocument(OPCPackage.open("d:\\Input.docx"));
-			for (XWPFParagraph p : doc.getParagraphs()) {
+	public Employee EmployeeUsers(String emp_NAME) {
+		dao.EmployeeUsers(emp_NAME);
+		Employee employee = dao.EmployeeUsers(emp_NAME);
+		return employee;
+	}
 
-				List<XWPFRun> runs = p.getRuns();
-
-				if (runs != null) {
-					for (XWPFRun r : runs) {
-
-						String text = r.getText(0);
-
-						if (text != null && text.contains("<varname>")) {
-							text = text.replace("<varname>", ename);
-							r.setText(text, 0);
-						}
-						if (text != null && text.contains("<varrole>")) {
-							text = text.replace("<varrole>", role);
-							r.setText(text, 0);
-						}
-						if (text != null && text.contains("<vardoj>")) {
-							text = text.replace("<vardoj>", doj);
-							r.setText(text, 0);
-						}
-						if (text != null && text.contains("<varctc")) {
-							text = text.replace("<varctc>", ctcc);
-							r.setText(text, 0);
-
-						}
-
-					}
-				}
-			}
-
-			for (XWPFTable tbl : doc.getTables()) {
-				for (XWPFTableRow row : tbl.getRows()) {
-					for (XWPFTableCell cell : row.getTableCells()) {
-						for (XWPFParagraph p : cell.getParagraphs()) {
-							for (XWPFRun r : p.getRuns()) {
-								String text = r.getText(0);
-								if (text != null && text.contains("a1")) {
-									text = text.replace("a1", "abcd");
-									r.setText(text, 0);
-								}
-							}
-						}
-					}
-				}
-			}
-			doc.write(new FileOutputStream("d:\\output.docx"));
-
-		} finally {
-			// InputStream doc = new FileInputStream(new File("d:\\output.docx"));
-			// XWPFDocument document = new XWPFDocument(doc);
-			// PdfOptions options = PdfOptions.create();
-			// OutputStream out = new FileOutputStream(new File(file));
-			//
-			// PdfConverter.getInstance().convert(document, out, options);
-
+	public boolean insertion(String employee_Name, String employee_Email, String dept_Id, Date doj, String pan_Number,
+			String aadar_Number, Integer work_Experience, String previous_Organisation, Date releve_Date,
+			String reporting_Id, String manager_Id, String education_Qualification, CommonsMultipartFile[] fileUpload,
+			String bloodgroup, String tshirtsize, String emeraddr, String permaaddr, String placeofreporting,
+			String gender, String phno) throws WriterException, IOException {
+		if (dao.EmployeeInsertion(employee_Name, employee_Email, dept_Id, doj, pan_Number, aadar_Number,
+				work_Experience, previous_Organisation, releve_Date, reporting_Id, manager_Id, education_Qualification,
+				fileUpload, bloodgroup, tshirtsize, emeraddr, permaaddr, placeofreporting, gender, phno)) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 
-	public OnboardEmployeeModel onboardemployeemodel(String emp_NAME) {
-		OnboardEmployeeModel oemodel = dao.onboardemployeemodel(emp_NAME);
-		return oemodel;
+	public void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
+			throws WriterException, IOException {
+		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<EncodeHintType, ErrorCorrectionLevel>();
+		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, size, size, hintMap);
+
+		int matrixWidth = byteMatrix.getWidth();
+		BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
+		image.createGraphics();
+
+		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+
+		graphics.setColor(Color.BLACK);
+
+		for (int i = 0; i < matrixWidth; i++) {
+			for (int j = 0; j < matrixWidth; j++) {
+				if (byteMatrix.get(i, j)) {
+					graphics.fillRect(i, j, 1, 1);
+				}
+			}
+		}
+		ImageIO.write(image, fileType, qrFile);
 	}
 
-	public boolean addnewemployee(String employee_Name, String employee_Email, String dept_Id, Date doj,
-			String pan_Number, String aadhar_Number, Integer work_Experience, String previous_Organisation,
-			Date relev_Date, String reporting_Id, String manager_Id, String education_Qualification) {
-		
-		dao.addnewemployee(employee_Name, employee_Email, dept_Id, doj, pan_Number, aadhar_Number, work_Experience,
-				previous_Organisation, relev_Date, reporting_Id, manager_Id, education_Qualification);
-		return true;
+	public void IDcreation(File sourceImageFile, byte[] imageFile, File destImageFile, byte[] qrimg, String text,
+			String type, String id, String blood) throws IOException {
+		IDCard_Generator.Image(imageFile, sourceImageFile, destImageFile);
+		IDCard_Generator.Name(text, type, destImageFile, destImageFile);
+
+		IDCard_Generator.Id(id, type, destImageFile, destImageFile);
+		IDCard_Generator.Blood(blood, type, destImageFile, destImageFile);
+		IDCard_Generator.addQr(qrimg, destImageFile, destImageFile);
+	}
+
+	public Employee get(String id) {
+		Employee emp = dao.get(id);
+		return emp;
 	}
 
 }

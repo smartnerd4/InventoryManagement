@@ -3,11 +3,18 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.OnboardEmployeeModel" table="EMPLOYEE_DETAILS">
-		<id name="employee_Id" type="string">
-			<column name="EMP_ID" length="10" not-null="true" />
-			<generator class="com.smartnerd.idgenerator.CustomIDGenerator" />
+	<class name="com.smartnerd.model.Employee"
+		table="EMPLOYEE_DETAILS">
+		<!-- <id name="employee_Id" type="string"> -->
+		<!-- <column name="EMP_ID" length="10" not-null="true" /> -->
+		<!-- <generator class="assigned" /> -->
+		<!-- </id> -->
+		<id name="employee_Id" column="EMP_ID">
+			<generator
+				class="com.smartnerd.sequenceGenerator.CustomIdGenerator" />
+
 		</id>
+
 		<property name="employee_Name" type="string">
 			<column name="EMP_NAME" length="30" not-null="false" />
 		</property>
@@ -23,16 +30,16 @@
 		<property name="pan_Number" type="string">
 			<column name="PAN_NUMBER" length="20" not-null="false" />
 		</property>
-		<property name="aadhar_Number" type="string">
+		<property name="aadar_Number" type="string">
 			<column name="AADHAR_NUMBER" length="20" not-null="false" />
 		</property>
 		<property name="work_Experience" type="int">
-			<column name="WORK_EXP"  not-null="false" />
+			<column name="WORK_EXP" not-null="false" />
 		</property>
 		<property name="previous_Organisation" type="string">
 			<column name="PREV_ORG" length="20" not-null="false" />
 		</property>
-		<property name="relev_Date" type="date">
+		<property name="releve_Date" type="date">
 			<column name="RELEV_DATE" length="7" not-null="false" />
 		</property>
 		<property name="reporting_Id" type="string">
@@ -49,6 +56,33 @@
 		</property>
 		<property name="system_Last_Modified_Date" type="date">
 			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
+		</property>
+		<property name="qr">
+			<column name="QR" />
+		</property>
+			<property name="image">
+			<column name="IMG" />
+		</property>
+		<property name="bloodgroup" type="string">
+			<column name="BLOODGROUP" length="10" not-null="false" />
+		</property>
+		<property name="tshirtsize" type="string">
+			<column name="TSHIRTSIZE" length="10" not-null="false" />
+		</property>
+		<property name="emergencyaddr" type="string">
+			<column name="EMERGADDRESS" length="10" not-null="false" />
+		</property>
+		<property name="permaaddr" type="string">
+			<column name="PERMAADDRESS" length="10" not-null="false" />
+		</property>
+		<property name="placeofreporting" type="string">
+			<column name="PLACEOFREPORTING" length="10" not-null="false" />
+		</property>
+		<property name="gender" type="string">
+			<column name="GENDER" length="10" not-null="false" />
+		</property>
+		<property name="phno" type="string">
+			<column name="PHNO" length="10" not-null="false" />
 		</property>
 	</class>
 </hibernate-mapping>

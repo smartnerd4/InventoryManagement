@@ -73,8 +73,11 @@ li.dropdown {
 				Resources</a>
 			<div class="dropdown-content">
 				<a href="generateofferletter">Generate Offer Letter</a>
-				<a href="addnewemployee">Add New Employee</a>
-				<a href="onboardemployee">Onboard Employee</a>
+
+				<a href="EmployeeInsertion">Add New Employee</a>
+				<a href="onboardemp">Onboard Employees</a>
+
+			
 			</div></li>
 		<li><a href="#products">Product Management</a></li>
 		<div class="right">
