@@ -3,27 +3,27 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.UserModel" table="SN_USER">
-		<id name="USER_ID" type="string">
+	<class name="com.smartnerd.model.User" table="SN_USER">
+		<id name="userid" type="string">
 			<column name="USER_ID" length="20" not-null="true" />
 			<generator class="assigned" />
 		</id>
-		<property name="USER_NAME" type="string">
+		<property name="username" type="string">
 			<column name="USER_NAME" length="20" not-null="false" />
 		</property>
-		<property name="PASSWORD" type="string">
+		<property name="password" type="string">
 			<column name="PASSWORD" length="20" not-null="false" />
 		</property>
-		<property name="SYS_CRE_DATE" type="date">
+		<property name="syscredate" type="date">
 			<column name="SYS_CRE_DATE" length="7" not-null="false" />
 		</property>
-		<property name="SYS_LST_MOD_DATE" type="date">
+		<property name="syslastmoditydate" type="date">
 			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
 		</property>
-		<property name="ACT_IN" type="int">
-			<column name="ACT_IN"  not-null="false" />
+		<property name="actin" type="int">
+			<column name="ACT_IN" not-null="false" />
 		</property>
-		<property name="COMMENTS" type="string">
+		<property name="comments" type="string">
 			<column name="COMMENTS" length="20" not-null="false" />
 		</property>
 	</class>
