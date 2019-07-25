@@ -3,77 +3,54 @@ package com.smartnerd.model;
 import java.util.Date;
 
 public class UserModel {
-	private String USER_ID;
-
-	private String USER_NAME;
-
-
-	private String PASSWORD;
-
-	private Date SYS_CRE_DATE;
-
-
-	private Date SYS_LST_MOD_DATE;
-
-	private int ACT_IN;
-
-	private String COMMENTS;
-
-	public String getUSER_ID() {
-		return USER_ID;
+	private String userid;
+	private String username;
+	private String password;
+	private Date syscredate;
+	private Date syslastmoddate;
+	private int actin;
+	private String comments;
+	
+	public String getUserid() {
+		return userid;
 	}
-
-	public void setUSER_ID(String uSER_ID) {
-		USER_ID = uSER_ID;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-
-	public String getUSER_NAME() {
-		return USER_NAME;
+	public String getUsername() {
+		return username;
 	}
-
-	public void setUSER_NAME(String uSER_NAME) {
-		USER_NAME = uSER_NAME;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public String getPASSWORD() {
-		return PASSWORD;
+	public String getPassword() {
+		return password;
 	}
-
-	public void setPASSWORD(String pASSWORD) {
-		PASSWORD = pASSWORD;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public Date getSYS_CRE_DATE() {
-		return SYS_CRE_DATE;
+	public Date getSyscredate() {
+		return syscredate;
 	}
-
-	public void setSYS_CRE_DATE(Date sYS_CRE_DATE) {
-		SYS_CRE_DATE = sYS_CRE_DATE;
+	public void setSyscredate(Date syscredate) {
+		this.syscredate = syscredate;
 	}
-
-	public Date getSYS_LST_MOD_DATE() {
-		return SYS_LST_MOD_DATE;
+	public Date getSyslastmoddate() {
+		return syslastmoddate;
 	}
-
-	public void setSYS_LST_MOD_DATE(Date sYS_LST_MOD_DATE) {
-		SYS_LST_MOD_DATE = sYS_LST_MOD_DATE;
+	public void setSyslastmoddate(Date syslastmoddate) {
+		this.syslastmoddate = syslastmoddate;
 	}
-
-	public int getACT_IN() {
-		return ACT_IN;
+	public int getActin() {
+		return actin;
 	}
-
-	public void setACT_IN(int aCT_IN) {
-		ACT_IN = aCT_IN;
+	public void setActin(int actin) {
+		this.actin = actin;
 	}
-
-	public String getCOMMENTS() {
-		return COMMENTS;
+	public String getComments() {
+		return comments;
 	}
-
-	public void setCOMMENTS(String cOMMENTS) {
-		COMMENTS = cOMMENTS;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
-
-
 }

@@ -1,6 +1,5 @@
 package com.smartnerd.model;
 
-import java.util.Date;
 
 public class OfferLetterModel {
 private String ename;
@@ -8,6 +7,42 @@ private String doj;
 private int ctc;
 private String role;
 private String file;
+private float basicsalary;
+private float hra;
+private float pf;
+private float standarddeduction;
+private float lta;
+
+public float getBasicsalary() {
+	return basicsalary;
+}
+public void setBasicsalary(float basicsalary) {
+	this.basicsalary = basicsalary;
+}
+public float getHra() {
+	return hra;
+}
+public void setHra(float hra) {
+	this.hra = hra;
+}
+public float getPf() {
+	return pf;
+}
+public void setPf(float pf) {
+	this.pf = pf;
+}
+public float getStandarddeduction() {
+	return standarddeduction;
+}
+public void setStandarddeduction(float standarddeduction) {
+	this.standarddeduction = standarddeduction;
+}
+public float getLta() {
+	return lta;
+}
+public void setLta(float lta) {
+	this.lta = lta;
+}
 public String getFile() {
 	return file;
 }

@@ -9,24 +9,20 @@
 </head>
 <%@ include file="/WEB-INF/css/body.css"%>
 <body>
-	<div style="text-align: center">
+		<div class="form">
 		<h1>LOGIN PAGE</h1>
 		<form modelAttribute="login" action="loginpage" method="post">
 
-			<div class="form-group">
-				<label for="name">Username:</label> <input path="name" type="text"
-					class="form-control" id="name" placeholder="Enter Username"
-					name="name" autofocus required
-					pattern="[a-zA-Z ]*" title="Username cannot contain special characters/numbers" ></input>
-			</div>
-			<div class="form-group">
-				<label for="pwd">Password:</label> <input path="password"
-					type="password" class="form-control" id="pwd"
-					placeholder="Enter Password" name="password" required
-					oninvalid="this.setCustomValidity('Password cannot be empty')"
-					oninput="setCustomValidity('')"></input>
-			</div>
-			<button id="button" type="submit" class="btn btn-primary">Login</button>
+			<label>Username: </label><input type="text" placeholder="Enter Username" name="name"
+				autofocus required pattern="[a-zA-Z ]*"
+				title="Username cannot contain special characters/numbers"></input><br>
+
+			<label>Password: </label><input type="password" placeholder="Enter Password"
+				name="password" required
+				oninvalid="this.setCustomValidity('Password cannot be empty')"
+				oninput="setCustomValidity('')"></input>
+
+			<div class="form"><button id="button" type="submit" class="btn btn-primary">Login</button></div>
 		</form>
 		${message}
 	</div>

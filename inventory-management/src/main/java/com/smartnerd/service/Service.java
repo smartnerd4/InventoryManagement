@@ -8,28 +8,31 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.zxing.WriterException;
-import com.smartnerd.model.Employee;
+import com.smartnerd.model.AddNewEmployeeModel;
+import com.smartnerd.model.OnboardEmployeeModel;
 
 public interface Service {
 
-	public boolean isValidUser(String user_NAME, String password)throws SQLException;
+	public boolean isValidUser(String user_NAME, String password) throws SQLException;
 
-	public boolean generateofferletter(String ename, String doj, int ctc, String role,String file,float basicsalary,float hra,float pf,float standarddeduction,float lta ) throws IOException, InvalidFormatException, InvalidFormatException;
+	public boolean generateofferletter(String ename, String doj, int ctc, String role, String file, float basicsalary,
+			float hra, float pf, float standarddeduction, float lta)
+			throws IOException, InvalidFormatException, InvalidFormatException;
 
+	public OnboardEmployeeModel oemodel(String employeeName);
 
+	public boolean addnewemployee(String employeeName, String employeeEmail, String deptID, Date doj,
+			String panNumber, String aadharNumber, Integer workExperience, String previousOrganisation,
+			Date relevDate, String reportingID, String managerID, String highestQualification,
+			CommonsMultipartFile[] fileUpload, String bloodGroup, String tshirtSize, String emergencyAddress,
+			String permanentAddress, String placeofReporting, String gender, String phoneNumber) throws WriterException, IOException;
 
+	public void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
+			throws WriterException, IOException;
 
-	public Employee EmployeeUsers(String emp_NAME);
+	public void IDcreation(File sourceImageFile, byte[] imageFile, File destImageFile, byte[] qrimg, String text,
+			String type, String id, String blood) throws IOException;
 
+	public AddNewEmployeeModel get(String id);
 
-	public boolean insertion(String employee_Name, String employee_Email, String dept_Id, Date doj, String pan_Number,
-			String aadar_Number, Integer work_Experience, String previous_Organisation, Date releve_Date,
-			String reporting_Id, String manager_Id, String education_Qualification,CommonsMultipartFile[] fileUpload, String bloodgroup, String tshirtsize, String emeraddr, String permaaddr, String placeofreporting, String gender, String phno)throws WriterException, IOException;
-
-	public void createQRImage(File qrFile, String qrCodeText, int size, String fileType)throws WriterException, IOException;
-
-	public void IDcreation(File sourceImageFile, byte[] imageFile, File destImageFile, byte[] qrimg, String text, String type,
-			String id, String blood) throws IOException; 
-	public Employee get(String id);
-	
 }

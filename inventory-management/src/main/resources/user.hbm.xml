@@ -3,7 +3,7 @@
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.smartnerd.model.User" table="SN_USER">
+	<class name="com.smartnerd.model.UserModel" table="SN_USER">
 		<id name="userid" type="string">
 			<column name="USER_ID" length="20" not-null="true" />
 			<generator class="assigned" />
@@ -17,7 +17,7 @@
 		<property name="syscredate" type="date">
 			<column name="SYS_CRE_DATE" length="7" not-null="false" />
 		</property>
-		<property name="syslastmoditydate" type="date">
+		<property name="syslastmoddate" type="date">
 			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
 		</property>
 		<property name="actin" type="int">

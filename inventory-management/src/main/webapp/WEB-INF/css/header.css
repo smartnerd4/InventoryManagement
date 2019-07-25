@@ -23,7 +23,7 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-	background-color: #FFC425;
+	background-color: #eeac00;
 	color: black;
 }
 
@@ -64,27 +64,25 @@ li.dropdown {
 <body>
 	<ul>
 		<li><a href="#logo">Smartnerd</a></li>
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Admin</a>
+		<li class="dropdown"><a class="dropbtn">Admin</a>
 			<div class="dropdown-content">
 				<a href="#reports">Reports</a>
 				<a href="#stocks">Stocks</a>
 			</div></li>
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Human
+		<li class="dropdown"><a class="dropbtn">Human
 				Resources</a>
 			<div class="dropdown-content">
 				<a href="generateofferletter">Generate Offer Letter</a>
-
-				<a href="EmployeeInsertion">Add New Employee</a>
-				<a href="onboardemp">Onboard Employees</a>
-
-			
+				<a href="addnewemployee">Add New Employee</a>
+				<a href="onboardemployee">Onboard Employee</a>
 			</div></li>
 		<li><a href="#products">Product Management</a></li>
+		
 		<div class="right">
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">${name}</a>
+		<li class="dropdown"><a class="dropbtn"></a>
 			<div class="dropdown-content">
 				<a href="#yourprofile">Your Profile</a>
-				<a href="#logout">Logout</a>
+				<a href="logoutpage">Logout</a>
 			</div></li>
 			<li><a href="#about">About</a></li>
 		</div>

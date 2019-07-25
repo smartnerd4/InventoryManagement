@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smartnerd.model.Offer;
+import com.smartnerd.model.OfferLetterModel;
 import com.smartnerd.service.Service;
 @Controller
 public class OfferLetterController {
 	@Autowired
 	private Service OfferService;
+	
 	@RequestMapping(value = "/generateofferletter", method = RequestMethod.GET)
 	public ModelAndView generateofferletter(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView("generateofferletter");
@@ -26,7 +27,7 @@ public class OfferLetterController {
 		}
 	@RequestMapping(value = "/generateofferletter", method = RequestMethod.POST)
 	public ModelAndView generateofferletterresponse(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("Offer") Offer offer) throws InvalidFormatException, IOException {
+			@ModelAttribute("Offer") OfferLetterModel offer) throws InvalidFormatException, IOException {
 		ModelAndView model = null;
 		model = new ModelAndView("generateofferletter");
 		if(OfferService.generateofferletter(offer.getEname(), offer.getDoj(),offer.getCtc(),offer.getRole(),offer.getFile(),offer.getBasicsalary(),offer.getHra(),offer.getPf(),offer.getStandarddeduction(),offer.getLta()))
