@@ -38,8 +38,7 @@ public class PDF_Generator {
 		float mstandarddeductioncal = standarddeduction * ctc;
 		float mltacal = lta * ctc;
 		float mspecialallowancescal = ctc - (mbasicsalarycal + mhracal + mpfcal + mltacal) + mstandarddeductioncal;
-		float mtotalcal = (mbasicsalarycal + mhracal + mpfcal + mltacal + mspecialallowancescal)
-				- mstandarddeductioncal;
+		float mtotalcal = (mbasicsalarycal + mhracal + mpfcal + mltacal + mspecialallowancescal) - mstandarddeductioncal;
 		int integermtotal = (int) mtotalcal;
 		float ybasicsalarycal = mbasicsalarycal * 12;
 		float yhracal = mhracal * 12;
@@ -173,7 +172,8 @@ public class PDF_Generator {
 			File output = new File(rootPath + File.separator + ename + doj + ".pdf");
 			OutputStream out = new FileOutputStream(output);
 			PdfConverter.getInstance().convert(doc, out, options);
-		} finally {
+		} 
+		finally {
 		}
 	}
 }

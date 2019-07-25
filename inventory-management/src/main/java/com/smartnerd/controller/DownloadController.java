@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.smartnerd.model.Employee;
+import com.smartnerd.model.AddNewEmployeeModel;
 import com.smartnerd.service.Service;
 @Controller
 @RequestMapping("/download")
@@ -29,19 +29,19 @@ public class DownloadController {
 	public void getImage(@PathVariable("file_name") String fileName,HttpServletResponse response) {
 	    try {
 
-	    	Employee empl=Qrcode.get(fileName);
+	    	AddNewEmployeeModel empl=Qrcode.get(fileName);
 	    	File sourceImageFile = new ClassPathResource("ID.jpg").getFile(); 
 			byte[]ImageFile=empl.getImage();
 			String rootPath = System.getProperty("java.io.tmpdir");
 
-		    String filePath = rootPath + File.separator+empl.getEmployee_Name()+".jpg";
+		    String filePath = rootPath + File.separator+empl.getEmployeeName()+".jpg";
 			File destImageFile = new File(filePath);
 			
-			String text=empl.getEmployee_Name();
+			String text=empl.getEmployeeName();
 			String type="png";
 			byte[]qrimg=empl.getQr();
-			String id=empl.getEmployee_Id();
-			String blood=empl.getPhno();
+			String id=empl.getEmployeeID();
+			String blood=empl.getPhoneNumber();
 			Qrcode.IDcreation(sourceImageFile,ImageFile,destImageFile,qrimg,text,type,id,blood);
 	      InputStream is = new FileInputStream(new File(filePath));
 	      org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());

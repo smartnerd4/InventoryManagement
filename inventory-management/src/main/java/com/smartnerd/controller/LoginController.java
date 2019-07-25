@@ -1,22 +1,14 @@
 package com.smartnerd.controller;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.smartnerd.model.Employee;
-import com.smartnerd.model.Login;
-import com.smartnerd.model.Offer;
+import com.smartnerd.model.LoginPageModel;
 
 import com.smartnerd.service.Service;
 
@@ -41,14 +33,14 @@ public class LoginController {
 
 	@RequestMapping(value = "/loginpage", method = RequestMethod.POST)
 	public ModelAndView loginviewresponse(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("login") Login login) {
+			@ModelAttribute("login") LoginPageModel lpmodel) {
 		ModelAndView model = null;
 		try {
-			boolean isValidUser = LoginService.isValidUser(login.getName(), login.getPassword());
+			boolean isValidUser = LoginService.isValidUser(lpmodel.getName(), lpmodel.getPassword());
 			if (isValidUser) {
 				System.out.println("User Login Successful");
 				model = new ModelAndView("homepage");
-				model.addObject("name", login.getName());
+				model.addObject("name", lpmodel.getName());
 			} else {
 
 				model = new ModelAndView("loginpage");

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smartnerd.model.OnboardEmployeeModel"
+		table="EMPLOYEE_DETAILS">
+		
+		<id name="employeeID" type="string">
+		<column name="EMP_ID" not-null="true" length="10"/>
+		<generator class="assigned"/>
+		</id>
+		<property name="employeeName" type="string">
+			<column name="EMP_NAME" length="30" not-null="false" />
+		</property>
+		<property name="employeeEmail" type="string">
+			<column name="EMAIL_ID" length="30" not-null="false" />
+		</property>
+		<property name="deptID" type="string">
+			<column name="DEPT_ID" length="10" not-null="false" />
+		</property>
+		<property name="doj" type="date">
+			<column name="DOJ" length="7" not-null="false" />
+		</property>
+		<property name="panNumber" type="string">
+			<column name="PAN_NUMBER" length="20" not-null="false" />
+		</property>
+		<property name="aadharNumber" type="string">
+			<column name="AADHAR_NUMBER" length="20" not-null="false" />
+		</property>
+		<property name="workExperience" type="int">
+			<column name="WORK_EXP" not-null="false" />
+		</property>
+		<property name="previousOrganisation" type="string">
+			<column name="PREV_ORG" length="20" not-null="false" />
+		</property>
+		<property name="relevDate" type="date">
+			<column name="RELEV_DATE" length="7" not-null="false" />
+		</property>
+		<property name="reportingID" type="string">
+			<column name="REPORTING_ID" length="10" not-null="false" />
+		</property>
+		<property name="managerID" type="string">
+			<column name="MANAGER_ID" length="10" not-null="false" />
+		</property>
+		<property name="highestQualification" type="string">
+			<column name="HIGH_QUAL" length="20" not-null="false" />
+		</property>
+		<property name="systemCreatedDate" type="date">
+			<column name="SYS_CRE_DATE" length="7" not-null="false" />
+		</property>
+		<property name="systemLastModifiedDate" type="date">
+			<column name="SYS_LST_MOD_DATE" length="7" not-null="false" />
+		</property>
+		<property name="qr">
+			<column name="QR" />
+		</property>
+		<property name="image">
+			<column name="IMG" />
+		</property>
+		<property name="bloodGroup" type="string">
+			<column name="BLOOD_GROUP" length="10" not-null="false" />
+		</property>
+		<property name="tshirtSize" type="string">
+			<column name="TSHIRT_SIZE" length="10" not-null="false" />
+		</property>
+		<property name="emergencyAddress" type="string">
+			<column name="EMERG_ADDRESS" length="10" not-null="false" />
+		</property>
+		<property name="permanentAddress" type="string">
+			<column name="PERMA_ADDRESS" length="10" not-null="false" />
+		</property>
+		<property name="placeofReporting" type="string">
+			<column name="PLACE_OF_REP" length="10" not-null="false" />
+		</property>
+		<property name="gender" type="string">
+			<column name="GENDER" length="10" not-null="false" />
+		</property>
+		<property name="phoneNumber" type="string">
+			<column name="PHONE_NUMBER" length="10" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

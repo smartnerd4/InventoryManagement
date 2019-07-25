@@ -27,8 +27,9 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import com.smartnerd.dao.Dao;
-import com.smartnerd.model.Employee;
-import com.smartnerd.model.User;
+import com.smartnerd.model.AddNewEmployeeModel;
+import com.smartnerd.model.OnboardEmployeeModel;
+import com.smartnerd.model.UserModel;
 import com.smartnerd.service.Service;
 
 @Repository
@@ -37,8 +38,8 @@ public class ServiceImp implements Service {
 	private Dao dao;
 
 	public boolean isValidUser(String username, String password) {
-		User user = dao.isValidUser(username, password);
-		if (user != null) {
+		UserModel umodel = dao.isValidUser(username, password);
+		if (umodel != null) {
 			return true;
 		}
 		return false;
@@ -52,23 +53,23 @@ public class ServiceImp implements Service {
 		return true;
 	}
 
-	public Employee EmployeeUsers(String emp_NAME) {
-		dao.EmployeeUsers(emp_NAME);
-		Employee employee = dao.EmployeeUsers(emp_NAME);
-		return employee;
+	public OnboardEmployeeModel oemodel(String employeeName) {
+		OnboardEmployeeModel oemodel = dao.oemodel(employeeName);
+		return oemodel;
 	}
 
-	public boolean insertion(String employee_Name, String employee_Email, String dept_Id, Date doj, String pan_Number,
-			String aadar_Number, Integer work_Experience, String previous_Organisation, Date releve_Date,
-			String reporting_Id, String manager_Id, String education_Qualification, CommonsMultipartFile[] fileUpload,
-			String bloodgroup, String tshirtsize, String emeraddr, String permaaddr, String placeofreporting,
-			String gender, String phno) throws WriterException, IOException {
-		if (dao.EmployeeInsertion(employee_Name, employee_Email, dept_Id, doj, pan_Number, aadar_Number,
-				work_Experience, previous_Organisation, releve_Date, reporting_Id, manager_Id, education_Qualification,
-				fileUpload, bloodgroup, tshirtsize, emeraddr, permaaddr, placeofreporting, gender, phno)) {
+	public boolean addnewemployee(String employeeName, String employeeEmail, String deptID, Date doj,
+			String panNumber, String aadharNumber, Integer workExperience, String previousOrganisation,
+			Date relevDate, String reportingID, String managerID, String highestQualification,
+			CommonsMultipartFile[] fileUpload, String bloodGroup, String tshirtSize, String emergencyAddress,
+			String permanentAddress, String placeofReporting, String gender, String phoneNumber) throws WriterException, IOException {
+
+		if (dao.addnewemployee(employeeName, employeeEmail, deptID, doj, panNumber, aadharNumber, workExperience,
+				previousOrganisation, relevDate, reportingID, managerID, highestQualification, fileUpload,
+				bloodGroup, tshirtSize, emergencyAddress, permanentAddress, placeofReporting, gender, phoneNumber)) {
 			return true;
-		}
-		return false;
+		} else
+			return false;
 	}
 
 	public void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
@@ -108,8 +109,8 @@ public class ServiceImp implements Service {
 		IDCard_Generator.addQr(qrimg, destImageFile, destImageFile);
 	}
 
-	public Employee get(String id) {
-		Employee emp = dao.get(id);
+	public AddNewEmployeeModel get(String id) {
+		AddNewEmployeeModel emp = dao.get(id);
 		return emp;
 	}
 

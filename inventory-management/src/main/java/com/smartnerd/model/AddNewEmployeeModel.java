@@ -2,7 +2,7 @@ package com.smartnerd.model;
 
 import java.util.Date;
 
-public class OnboardEmployeeModel {
+public class AddNewEmployeeModel {
 	private String employeeID;
 	private String employeeName;
 	private String employeeEmail;
@@ -13,10 +13,10 @@ public class OnboardEmployeeModel {
 	private Integer workExperience;
 	private String previousOrganisation;
 	private Date relevDate;
-	private Integer city;
 	private String reportingID;
 	private String managerID;
 	private String highestQualification;
+	private Integer city;
 	private Date systemCreatedDate;
 	private Date systemLastModifiedDate;
 	private byte[] qr;
@@ -28,7 +28,6 @@ public class OnboardEmployeeModel {
 	private String placeofReporting;
 	private String gender;
 	private String phoneNumber;
-	
 	
 	public String getEmployeeID() {
 		return employeeID;
@@ -90,12 +89,6 @@ public class OnboardEmployeeModel {
 	public void setRelevDate(Date relevDate) {
 		this.relevDate = relevDate;
 	}
-	public Integer getCity() {
-		return city;
-	}
-	public void setCity(Integer city) {
-		this.city = city;
-	}
 	public String getReportingID() {
 		return reportingID;
 	}
@@ -113,6 +106,12 @@ public class OnboardEmployeeModel {
 	}
 	public void setHighestQualification(String highestQualification) {
 		this.highestQualification = highestQualification;
+	}
+	public Integer getCity() {
+		return city;
+	}
+	public void setCity(Integer city) {
+		this.city = city;
 	}
 	public Date getSystemCreatedDate() {
 		return systemCreatedDate;
