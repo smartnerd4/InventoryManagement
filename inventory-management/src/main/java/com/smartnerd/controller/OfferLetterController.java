@@ -1,6 +1,7 @@
 package com.smartnerd.controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +31,8 @@ public class OfferLetterController {
 			@ModelAttribute("Offer") OfferLetterModel offer) throws InvalidFormatException, IOException {
 		ModelAndView model = null;
 		model = new ModelAndView("generateofferletter");
-		if(OfferService.generateofferletter(offer.getEname(), offer.getDoj(),offer.getCtc(),offer.getRole(),offer.getFile(),offer.getBasicsalary(),offer.getHra(),offer.getPf(),offer.getStandarddeduction(),offer.getLta()))
+	
+		if(OfferService.generateofferletter(offer.getEname(), offer.getDoj(),offer.getCtc(),offer.getRole(),offer.getFile(),offer.getBasicsalary(),offer.getHra(),offer.getPf(),offer.getStandarddeduction(),offer.getLta(),offer.getSpecialallowance()))
 		{
 			String Downloadfilename=offer.getEname()+ offer.getDoj()+".pdf";
 			model.addObject("m","Ready to download");

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smartnerd.model.OnboardEmployeeModel;
+import com.smartnerd.model.EmployeeModel;
 import com.smartnerd.service.Service;
 
 @Controller
@@ -28,10 +28,11 @@ public class OnboardEmployeeController {
 
 	@RequestMapping(value = "/onboardemployee", method = RequestMethod.POST)
 	public ModelAndView onboard(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onboardemp") OnboardEmployeeModel onboardemployeemodel) throws InvalidFormatException, IOException {
+			@ModelAttribute("onboardemp") EmployeeModel onboardemployeemodel) throws InvalidFormatException, IOException {
 		ModelAndView model = null;
-		OnboardEmployeeModel oemodel1 = OnboardService.oemodel(onboardemployeemodel.getEmployeeName());
+		EmployeeModel oemodel1 = OnboardService.oemodel(onboardemployeemodel.getEmployeeName());
 		if (oemodel1 != null) {
+			
 			model = new ModelAndView("onboardemployee");
 			model.addObject("msg", "Employee Found!");
 
@@ -54,11 +55,11 @@ public class OnboardEmployeeController {
 			String base64Encoded = new String(encodeBase64, "UTF-8");
 			model.addObject("blob", base64Encoded);
 			return model;
-		} else {
+		} 
 			model = new ModelAndView("onboardemployee");
 			model.addObject("msg", "Employee Not Found!");
 			return model;
-		}
+		
 
 	}
 }

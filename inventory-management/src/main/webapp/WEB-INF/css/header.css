@@ -6,7 +6,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #202C5F;
+	background-color: #033556;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -23,7 +23,7 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-	background-color: #eeac00;
+	background-color: #FFB708;
 	color: black;
 }
 
@@ -75,6 +75,7 @@ li.dropdown {
 				<a href="generateofferletter">Generate Offer Letter</a>
 				<a href="addnewemployee">Add New Employee</a>
 				<a href="onboardemployee">Onboard Employee</a>
+				<a href="generatebusinesscard">Generate Business Card</a>
 			</div></li>
 		<li><a href="#products">Product Management</a></li>
 		

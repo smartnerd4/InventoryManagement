@@ -1,6 +1,7 @@
 package com.smartnerd.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.zxing.WriterException;
-import com.smartnerd.model.AddNewEmployeeModel;
+import com.smartnerd.model.EmployeeModel;
 import com.smartnerd.service.Service;
 
 @Controller
@@ -32,16 +33,15 @@ public class AddNewEmployeeController {
 
 	@RequestMapping(value = "/addnewemployee", method = RequestMethod.POST)
 	public ModelAndView onboard(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("addnewemp") AddNewEmployeeModel anemodel,BindingResult br, @RequestParam CommonsMultipartFile[] fileUpload)
-			throws InvalidFormatException, IOException, WriterException {
+			@ModelAttribute("addnewemp") EmployeeModel anemodel,BindingResult br, @RequestParam CommonsMultipartFile[] fileUpload)
+			throws InvalidFormatException, IOException, WriterException, ParseException {
 		ModelAndView model = null;
-
 		boolean result = NewEmpService.addnewemployee(anemodel.getEmployeeName(), anemodel.getEmployeeEmail(), anemodel.getDeptID(),
-				anemodel.getDoj(), anemodel.getPanNumber(), anemodel.getAadharNumber(), anemodel.getWorkExperience(),
-				anemodel.getPreviousOrganisation(), anemodel.getRelevDate(), anemodel.getReportingID(), anemodel.getManagerID(),
+				anemodel.getWdoj(), anemodel.getPanNumber(), anemodel.getAadharNumber(), anemodel.getWorkExperience(),
+				anemodel.getPreviousOrganisation(), anemodel.getWrelevDate(), anemodel.getReportingID(), anemodel.getManagerID(),
 				anemodel.getHighestQualification(), fileUpload, anemodel.getBloodGroup(), anemodel.getTshirtSize(),
 				anemodel.getEmergencyAddress(), anemodel.getPermanentAddress(), anemodel.getPlaceofReporting(), anemodel.getGender(),
-				anemodel.getPhoneNumber());
+				anemodel.getPhoneNumber(),anemodel.getCity());
 
 		if (result) {
 			model = new ModelAndView("addnewemployee");

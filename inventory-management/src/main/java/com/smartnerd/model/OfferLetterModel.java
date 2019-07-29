@@ -12,7 +12,14 @@ private float hra;
 private float pf;
 private float standarddeduction;
 private float lta;
+private float specialallowance;
 
+public float getSpecialallowance() {
+	return specialallowance;
+}
+public void setSpecialallowance(float specialallowance) {
+	this.specialallowance = specialallowance;
+}
 public float getBasicsalary() {
 	return basicsalary;
 }
