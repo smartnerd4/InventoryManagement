@@ -32,8 +32,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>user.hbm.xml</value>
-				<value>onboardemployee.hbm.xml</value>
-				<value>addnewemployee.hbm.xml</value>
+				<value>employee.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

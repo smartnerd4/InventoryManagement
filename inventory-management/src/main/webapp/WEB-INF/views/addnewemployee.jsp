@@ -24,7 +24,7 @@
 
 				<label>Department: </label>
 				<select type="number" name="deptID" required>
-				<option></option>
+				<option value="">---Select a Department---</option>
 				<option value="001">Research & Department</option>
 				<option value="002">Installation & Planning</option>
 				<option value="003">Sales & Marketing</option>
@@ -37,15 +37,19 @@
 				<option value="010">Management</option>
 				</select>	
 					
-				<label>Date of Joining: </label><input type="text" placeholder="Enter Date of Joining" name="doj" required
-					oninvalid="this.setCustomValidity('DOJ cannot be empty')"
-					oninput="setCustomValidity('')"></input><br>
+				<label>Date of Joining: </label><input type="date" placeholder="Enter Date of Joining(MM-dd-yyyy)" name="wdoj"
+				 required 
+				 oninvalid="this.setCustomValidity('DOJ cannot be empty')"
+					oninput="setCustomValidity('')">
+					</input><br>
 
 				<label>Pan Number: </label><input type="text" placeholder="Enter Pan Number"
-					name="panNumber" required></input>
+					name="panNumber" required pattern="[A-Za-z0-9_]{10}"
+					title="Must contain ten-digit alphanumeric numbers"></input>
 
-				<label>Aadhar Number: </label><input type="number" placeholder="Enter Aadhar Number"
-					name="aadharNumber" required></input><br>
+				<label>Aadhar Number: </label><input type="text" placeholder="Enter Aadhar Number"
+					name="aadharNumber" required pattern="[0-9]{12}"
+					title="Must contain twelve-digit number"></input><br>
 
 				<label>Work Experience: </label><input type="number" placeholder="Enter Work Experience in yrs"
 					name="workExperience" required></input>
@@ -53,7 +57,8 @@
 				<label>Previous Organisation: </label><input type="text" placeholder="Enter Previous Organisation name"
 					name="previousOrganisation" required></input><br>
 				
-				<label>Relev Date: </label><input type="text" placeholder="Enter Relev Date" name="relevDate" required
+				<label>Relev Date: </label><input type="date" placeholder="Enter Relev Date(MM-dd-yyyy)" name="wrelevDate" required
+				
 					oninvalid="this.setCustomValidity('Relevdate cannot be empty')"
 					oninput="setCustomValidity('')"></input>
 
@@ -67,7 +72,7 @@
 					name="highestQualification" required></input><br>
 
 				<label>City: </label><select type="number" name="city" required>
-					<option></option>
+					<option value="">---Select a City---</option>
 					<option value="9">Hyderabad</option>
 					<option value="8">Vishakapatnam</option>
 					<option value="1">Amaravathi</option>
@@ -79,19 +84,19 @@
 				</select>
 				
 				<label>Blood Group: </label><select type="text" name="bloodGroup" required>
-					<option></option>
-					<option value="A+">A+</option>
-					<option value="A-">A-</option>
-					<option value="B+">B+</option>
-					<option value="B-">B-</option>
-					<option value="O+">O+</option>
-					<option value="O-">O-</option>
-					<option value="AB+">AB+</option>
-					<option value="AB-">AB-</option>
+					<option value="">---Select a Blood Group---</option>
+					<option value="A+ve">A+ve</option>
+					<option value="A-ve">A-ve</option>
+					<option value="B+ve">B+ve</option>
+					<option value="B-ve">B-ve</option>
+					<option value="O+ve">O+ve</option>
+					<option value="O-ve">O-ve</option>
+					<option value="AB+ve">AB+ve</option>
+					<option value="AB-ve">AB-ve</option>
 				</select><br>
                     
                 <label>T-Shirt Size: </label><select type="text" name="tshirtSize" required>
-                <option></option>
+                <option value="">---Select a T-Shirt Size---</option>
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -112,14 +117,17 @@
                 	name="placeofReporting" required></input><br>
                    
                 <label>Gender: </label><select type="text" name="gender" required>
-                	<option></option>
+                	<option value="">---Select a Gender---</option>
                 	<option value="Male">Male</option>
                 	<option value="Female">Female</option>
+                	<option value="Others">Others</option>
                 	</select>
                 					       
-                <label>Phone Number: </label><input type="number" placeholder="Enter Phone Number" name="phoneNumber" required></input><br>
+                <label>Phone Number: </label><input type="text" placeholder="Enter Phone Number" name="phoneNumber" required
+                required pattern="[0-9]{10}"
+					title="Must contain ten-digit number"></input><br>
 
-            <label>Insert Your Photo:</label><input type = "file" name = "fileUpload" size = "50"></input>
+            <label>Insert Your Photo:</label><input type = "file" name = "fileUpload" size = "50" required></input>
 				
 			<button id="button" type="submit" class="btn btn-primary">Submit</button><br>
         </form>
