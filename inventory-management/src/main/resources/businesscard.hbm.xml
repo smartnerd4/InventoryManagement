@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smartnerd.model.BusinessCardModel"
+		table="BUSINESSCARD_DETAILS">
+		
+		<id name="id" >
+		<column name="ID" />
+		 <generator class="increment" />
+		</id>
+		<property name="name" type="string">
+			<column name="NAME" length="30" not-null="false" />
+		</property>
+		<property name="designation" type="string">
+			<column name="DESIGNATION" length="30" not-null="false" />
+		</property>
+		<property name="email" type="string">
+			<column name="EMAIL" length="30" not-null="false" />
+		</property>
+		<property name="phoneNumber" type="string">
+			<column name="PHNO" not-null="false" />
+		</property>
+	<property name="qr">
+			<column name="QR" />
+		</property>
+	</class>
+</hibernate-mapping>

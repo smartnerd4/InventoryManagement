@@ -29,6 +29,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import com.smartnerd.dao.Dao;
+import com.smartnerd.model.BusinessCardModel;
 import com.smartnerd.model.EmployeeModel;
 import com.smartnerd.model.UserModel;
 import com.smartnerd.service.Service;
@@ -49,7 +50,7 @@ public class ServiceImp implements Service {
 	public boolean generateofferletter(String ename, String doj, int ctc, String role, String file, float basicsalary,
 			float hra, float pf, float standarddeduction, float lta,float specialallowance)
 			throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
-		String nctc = NumberConverter.convertNumberToWords(ctc)+" Rupees Only";
+		String nctc = "Rupees "+NumberConverter.convertNumberToWords(ctc)+" Only";
 		PDF_Generator.ConvertToPDF(ename, doj, ctc, nctc, role, file, basicsalary, hra, pf, standarddeduction, lta,specialallowance);
 		return true;
 	}
@@ -100,14 +101,11 @@ public class ServiceImp implements Service {
 		ImageIO.write(image, fileType, qrFile);
 	}
 
-	public void IDcreation(File sourceImageFile, byte[] imageFile, File destImageFile, byte[] qrimg, String text,
+	public void IDcreation(File sourceImageFile, byte[] imageFile, File destImageFile, byte[] qrimg, String name,
 			String type, String id, String blood, File destImageFileend, String doj, File actudestImageFilefront,File sourceBackImageFile) throws IOException, FontFormatException {
 		IDCard_Generator.Image(imageFile, sourceImageFile, destImageFile);
-		IDCard_Generator.Name(text, type, destImageFile, destImageFile);
-
-		IDCard_Generator.Id(id, type, destImageFile, destImageFile);
-		IDCard_Generator.Blood(blood, type, destImageFile, destImageFile);
 		IDCard_Generator.addQr(qrimg, destImageFile, destImageFile);
+        IDCard_Generator.frontAddingText(name,id,blood, type, destImageFile, destImageFile);
 		IDCard_Generator.Back(doj,type,sourceBackImageFile,destImageFileend);
 		IDCard_Generator.joinBufferedImage(destImageFile ,destImageFileend,actudestImageFilefront);
 	}
@@ -116,5 +114,25 @@ public class ServiceImp implements Service {
 	EmployeeModel emp = dao.get(id);
 		return emp;
 	}
-
+public boolean addnewbc(String name, String phno, String designation, String email) throws WriterException, IOException
+{
+	if (dao.addnewbc(name,phno,designation,email)) {
+		return true;
+	}
+	return false;
+	
+}
+public BusinessCardModel getbcimage(String name) {
+BusinessCardModel emp = dao.getbc(name);
+	return emp;
+}
+public boolean BCcreation(File sourceImageFile, File destImageFilefront, File sourceBackImageFile,
+		File destImageFileend, File actudestImageFilefront, String name, String email, String phno,
+		String designation, File qrimg) throws IOException, FontFormatException
+{
+	BusinessCard_Generator.bccreation( sourceBackImageFile, destImageFileend,actudestImageFilefront,name,email,phno,designation);
+	BusinessCard_Generator.bcqr(destImageFileend, destImageFileend, qrimg);
+	BusinessCard_Generator.joinBufferedImage(sourceImageFile, destImageFileend, actudestImageFilefront);
+	return true;
+}
 }

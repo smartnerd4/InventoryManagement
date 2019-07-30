@@ -35,5 +35,10 @@ button {
 	background-color: #c0c0c0;
 	color: #000000;
 }
+#container {
+    float: right; 
+    width: 700px; 
+    height: 300px;
+}
 
 </style>
