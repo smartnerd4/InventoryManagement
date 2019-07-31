@@ -50,8 +50,19 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return model;
+	}
+	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
+	public ModelAndView homepage(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView model = new ModelAndView("homepage");
+		return model;
+
+	}
+	@RequestMapping(value = "/logoutpage", method = RequestMethod.GET)
+	public ModelAndView logoutpage(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView model = new ModelAndView("logoutpage");
+		return model;
+
 	}
 }
 	

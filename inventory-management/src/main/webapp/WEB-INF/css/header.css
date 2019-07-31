@@ -1,93 +1,90 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <style>
 ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #033556;
-	font-family: Arial, Helvetica, sans-serif;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #033556;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
+.logo
+{
+    float: left;
+}
 li {
-	float: left;
+    float: left;
 }
-
 li a, .dropbtn {
-	display: inline-block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
-
 li a:hover, .dropdown:hover .dropbtn {
-	background-color: #FFB708;
-	color: black;
+    background-color: #FFB708;
+    color: black;
 }
-
 li.dropdown {
-	display: inline-block;
+    display: inline-block;
 }
-
 .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #ffffff;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
-
 .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	text-align: left;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
-
 .dropdown-content a:hover {
-	background-color: #808080;
+    background-color: #808080;
 }
-
 .dropdown:hover .dropdown-content {
-	display: block;
+    display: block;
 }
-
 .right {
-	float: right;
+    float: right;
 }
 </style>
 </head>
 <body>
-	<ul>
-		<li><a href="#logo">Smartnerd</a></li>
-		<li class="dropdown"><a class="dropbtn">Admin</a>
-			<div class="dropdown-content">
-				<a href="#reports">Reports</a>
-				<a href="#stocks">Stocks</a>
-			</div></li>
-		<li class="dropdown"><a class="dropbtn">Human
-				Resources</a>
-			<div class="dropdown-content">
-				<a href="generateofferletter">Generate Offer Letter</a>
-				<a href="addnewemployee">Add New Employee</a>
-				<a href="onboardemployee">Onboard Employee</a>
-				<a href="generatebusinesscard">Generate Business Card</a>
-				<a href="excelupload">Upload Excel File</a>
-			</div></li>
-		<li><a href="#products">Product Management</a></li>
-		
-		<div class="right">
-		<li class="dropdown"><a class="dropbtn"></a>
-			<div class="dropdown-content">
-				<a href="#yourprofile">Your Profile</a>
-				<a href="logoutpage">Logout</a>
-			</div></li>
-			<li><a href="#about">About</a></li>
-		</div>
-	</ul>
+    <ul>
+        <div class="logo">
+        <a href="homepage"><img src="<c:url value="/resources/images/SmartnerdLogo.jpg"/>" width="130" height="40"/></a>
+        </div>
+        <li class="dropdown"><a class="dropbtn">Admin</a>
+            <div class="dropdown-content">
+                <a href="#reports">Reports</a>
+                <a href="#stocks">Stocks</a>
+            </div></li>
+        <li class="dropdown"><a class="dropbtn">Human
+                Resources</a>
+            <div class="dropdown-content">
+                <a href="generateofferletter">Generate Offer Letter</a>
+                <a href="addnewemployee">Add New Employee</a>
+                <a href="onboardemployee">Onboard Employee</a>
+                <a href="generatebusinesscard">Generate Business Card</a>
+            </div></li>
+        <li><a href="#products">Product Management</a></li>
+        
+        <div class="right">
+        <li class="dropdown"><a class="dropbtn"></a>
+            <div class="dropdown-content">
+                <a href="#yourprofile">Your Profile</a>
+                <a href="logoutpage">Logout</a>
+            </div></li>
+            <li><a href="#about">About</a></li>
+        </div>
+    </ul>
 </body>
 </html>
