@@ -1,8 +1,6 @@
 package com.smartnerd.daoImp;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.google.zxing.WriterException;
 import com.smartnerd.dao.Dao;
+import com.smartnerd.model.BusinessCardModel;
 import com.smartnerd.model.EmployeeModel;
 import com.smartnerd.model.UserModel;
 import com.smartnerd.service.Service;
@@ -35,6 +34,7 @@ public class DaoImp implements Dao {
 		cr.add(Restrictions.eq("username", username));
 		cr.add(Restrictions.eq("password", password));
 		UserModel umodel = (UserModel) cr.uniqueResult();
+		session.close();
 		return umodel;
 	}
 
@@ -43,8 +43,9 @@ public class DaoImp implements Dao {
 		Criteria cr = session.createCriteria(EmployeeModel.class);
 		cr.add(Restrictions.eq("employeeName", employeeName));
 		EmployeeModel oemodel = (EmployeeModel) cr.uniqueResult();
+		session.close();
 		return oemodel;
-	}
+}
 
 	public boolean addnewemployee(String employeeName, String employeeEmail, String deptID, String doj, String panNumber,
 			String aadharNumber, Integer workExperience, String previousOrganisation, String relevDate,
@@ -58,8 +59,6 @@ public class DaoImp implements Dao {
 		anemodel.setEmployeeName(employeeName);
 		anemodel.setEmployeeEmail(employeeEmail);
 		anemodel.setDeptID(deptID);
-//		DateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-//		java.sql.Date date = (java.sql.Date) simpleDateFormat.parse(doj);
 		anemodel.setDoj(Date.valueOf(doj));
 		anemodel.setPanNumber(panNumber);
 		anemodel.setAadharNumber(aadharNumber);
@@ -77,8 +76,8 @@ public class DaoImp implements Dao {
 		anemodel.setGender(gender);
 		anemodel.setPhoneNumber(phoneNumber);
 		anemodel.setCity(citycode);
-		String qrCodeText = "Employee name :" + employeeName + "\n" + "Company Name : Smartnerd" + "\n" + "Email :"
-				+ employeeEmail + "\n" + "Phone No :" + phoneNumber;
+		String qrCodeText = "Employee Name : " + employeeName + "\n" + "Company Name : Smartnerd" + "\n" + "Email : "
+				+ employeeEmail + "\n" + "Phone No : " + phoneNumber;
 		String rootPath = System.getProperty("java.io.tmpdir");
 
 		String filePath = rootPath + File.separator + employeeName + ".png";
@@ -86,7 +85,6 @@ public class DaoImp implements Dao {
 		String fileType = "png";
 		File qrFile = new File(filePath);
 		Qr.createQRImage(qrFile, qrCodeText, size, fileType);
-		System.out.println("DONE");
 
 		File imagePath = new File(filePath);
 
@@ -111,11 +109,61 @@ public class DaoImp implements Dao {
 
 		s.save(anemodel);
 		s.getTransaction().commit();
+		s.close();
 		return true;
 	}
 
 	public EmployeeModel get(String id) {
 		Session session = sessionFactory.openSession();
+		session.close();
 		return (EmployeeModel) session.get(EmployeeModel.class, id);
+		
+	}
+	public boolean addnewbc(String name, String phno, String designation, String email) throws WriterException, IOException
+	{
+		Session se = sessionFactory.openSession();
+		se.beginTransaction();
+		BusinessCardModel bcmodel = new BusinessCardModel();
+		bcmodel.setName(name);
+		bcmodel.setPhoneNumber(phno);
+		bcmodel.setDesignation(designation);
+		bcmodel.setEmail(email);
+		
+		String qrCodeText ="smartnerd.in";
+		String rootPath = System.getProperty("java.io.tmpdir");
+
+		String filePath = rootPath + File.separator + name + ".png";
+		int size = 150;
+		String fileType = "png";
+		File qrFile = new File(filePath);
+		Qr.createQRImage(qrFile, qrCodeText, size, fileType);
+	
+
+		File imagePath = new File(filePath);
+
+		byte[] imageInBytes = new byte[(int) imagePath.length()];
+		FileInputStream inputStream;
+		try {
+			inputStream = new FileInputStream(imagePath);
+			inputStream.read(imageInBytes);
+			inputStream.close();
+			bcmodel.setQr(imageInBytes);
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+			}
+		se.save(bcmodel);
+		se.getTransaction().commit();
+		se.close();
+		return true;
+}
+	public BusinessCardModel getbc(String name) {
+		Session session = sessionFactory.openSession();
+		Criteria cr = session.createCriteria(BusinessCardModel.class);
+		cr.add(Restrictions.eq("name", name));
+	    BusinessCardModel bcmodel = (BusinessCardModel) cr.uniqueResult();
+	    session.close();
+		return bcmodel;
 	}
 }

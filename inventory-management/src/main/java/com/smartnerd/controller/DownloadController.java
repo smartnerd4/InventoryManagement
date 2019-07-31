@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.smartnerd.model.EmployeeModel;
+
 import com.smartnerd.service.Service;
 @Controller
 @RequestMapping("/download")
@@ -47,8 +48,6 @@ public class DownloadController {
 			File destImageFileend = new File(filePathend);
 			String pattern = "dd-MMM-yyyy";
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-//			String date = simpleDateFormat.format(new Date());
 			String doj=simpleDateFormat.format(empl.getDoj());
 			 String actufilePath = rootPath + File.separator+fileName;
 				File actudestImageFilefront = new File(actufilePath);
@@ -71,6 +70,22 @@ public class DownloadController {
 	    try {
 	        String rootPath = System.getProperty("java.io.tmpdir");
 	        String path=rootPath+ File.separator+fileName+".pdf";
+
+	      InputStream is = new FileInputStream(new File(path));
+	      org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+	      response.flushBuffer();
+	    } catch (IOException ex) {
+	      
+	      throw new RuntimeException("IOError writing file to output stream");
+	    }
+
+	}
+	@RequestMapping(value = "/card/{file_name}", method = RequestMethod.GET)
+	public void getBusinessCard(@PathVariable("file_name") String fileName,HttpServletResponse response) throws FontFormatException {
+
+		try {
+	        String rootPath = System.getProperty("java.io.tmpdir");
+	        String path=rootPath+ File.separator+fileName;
 
 	      InputStream is = new FileInputStream(new File(path));
 	      org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());

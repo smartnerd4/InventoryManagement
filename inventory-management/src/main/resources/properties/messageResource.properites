@@ -1,7 +1,42 @@
-login.username=User Name
-login.password=Password
-
-############OFFER LETTER##############
-offerletter.doj=Date Of Joining
-
-
+###############LOGIN PAGE###############
+login.name = Username
+login.password = Password
+###############OFFER LETTER###############
+Offer.ename = Employee Name
+Offer.doj = Date Of Joining
+Offer.ctc = Cost to Company
+Offer.role = Role/Designation
+Offer.basicsalary = Basic Salary
+Offer.hra = HRA
+Offer.pf = PF
+Offer.standarddeduction = Standard Deduction
+Offer.lta = LTA
+Offer.specialallowance = Special Allowance
+###############ADD NEW EMPLOYEE###############
+addnewemp.employeeName = Employee Name
+addnewemp.employeeEmail = Email ID
+addnewemp.deptID = Department
+addnewemp.wdoj = Date of Joining
+addnewemp.panNumber = Pan Number
+addnewemp.aadharNumber = Aadhar Number
+addnewemp.workExperience = Work Experience
+addnewemp.previousOrganisation = Previous Organisation
+addnewemp.wrelevDate = Relev Date
+addnewemp.reportingID = Reporting ID
+addnewemp.managerID = Manager ID
+addnewemp.highestQualification = Highest Qualification
+addnewemp.city = City
+addnewemp.bloodGroup = Blood Group
+addnewemp.tshirtSize = T-Shirt Size
+addnewemp.emergencyAddress = Emergency Address
+addnewemp.permanentAddress = Permanent Address
+addnewemp.placeofReporting = Place of Reporting
+addnewemp.gender = Gender
+addnewemp.phoneNumber = Phone Number
+###############ONBOARD EMPLOYEE###############
+onboardemp.employeeName = Employee Name
+###############BUSINESS CARD###############
+BusinessCardModel.name = Employee Name
+BusinessCardModel.designation = Designation
+BusinessCardModel.phoneNumber = Phone Number
+BusinessCardModel.email = E-Mail

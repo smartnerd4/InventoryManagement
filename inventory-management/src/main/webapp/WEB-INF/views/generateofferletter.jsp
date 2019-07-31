@@ -11,6 +11,9 @@
 <body>
 	<div class="form">
 		<h1>Offer Letter Generator</h1>
+		
+				<h3>${m}<br><a href="download/pdf/${name}">${view}</a></h3>
+		
 		<form modelAttribute="Offer" action="generateofferletter"
 			method="post">
 
@@ -43,7 +46,7 @@
 			<label>SpecialAllowance: </label><input id="sa" type="text" name="specialallowance"
 				value="0.252" required></input>*CTC<br>
 		<button id="button" type="submit" class="btn btn-primary">Generate Offer Letter</button><br>
-			${m} </br> <a href="download/pdf/${name}">Click Here to View</a>
+
 
 
 
@@ -87,10 +90,7 @@
 			var t5 = t3 + t4
 			var temp = 1 - t5;
 			sa.value = temp;
-
-		}
-		
-		
+		}		
 	</script>
 </body>
 </html>

@@ -33,6 +33,7 @@
 			<list>
 				<value>user.hbm.xml</value>
 				<value>employee.hbm.xml</value>
+				<value>businesscard.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

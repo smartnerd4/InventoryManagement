@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -15,21 +16,6 @@ import javax.imageio.ImageIO;
 import org.springframework.core.io.ClassPathResource;
 
 public class IDCard_Generator {
-	static void Name(String text, String type, File source, File destination) throws IOException, FontFormatException {
-		BufferedImage image = ImageIO.read(source);
-		int imageType = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
-		BufferedImage watermarked = new BufferedImage(image.getWidth(), image.getHeight(), imageType);
-		Graphics2D w = (Graphics2D) watermarked.getGraphics();
-		w.drawImage(image, 0, 0, null);
-		w.setColor(Color.BLACK);
-		File BariolFont = new ClassPathResource("bariol.otf").getFile();
-		Font font = Font.createFont(Font.TRUETYPE_FONT, BariolFont);
-		font = font.deriveFont(Font.PLAIN, 45);
-		w.setFont(font);
-		w.drawString(text, 85, 960);
-		ImageIO.write(watermarked, type, destination);
-		w.dispose();
-	}
 
 	static void Image(byte[] imageFile, File sourceImageFile, File destImageFile) {
 		try {
@@ -43,47 +29,6 @@ public class IDCard_Generator {
 			System.err.println(ex);
 		}
 	}
-
-	static void Id(String text, String type, File source, File destination) throws IOException, FontFormatException {
-		BufferedImage image = ImageIO.read(source);
-		int imageType = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
-		BufferedImage watermarked = new BufferedImage(image.getWidth(), image.getHeight(), imageType);
-		Graphics2D w = (Graphics2D) watermarked.getGraphics();
-		w.drawImage(image, 0, 0, null);
-		w.setColor(Color.BLACK);
-		File BariolFont = new ClassPathResource("bariol.otf").getFile();
-		Font font = Font.createFont(Font.TRUETYPE_FONT, BariolFont);
-		font = font.deriveFont(Font.PLAIN, 36);
-		w.setFont(font);
-		AffineTransform at = new AffineTransform();
-		at.setToRotation(Math.toRadians(270), 80, 100);
-		w.setTransform(at);
-		w.drawString(text, -480, 650);
-		// w.drawString(text, 100, 1010);
-
-		ImageIO.write(watermarked, type, destination);
-		w.dispose();
-	}
-
-	static void Blood(String text, String type, File source, File destination) throws IOException, FontFormatException {
-		BufferedImage image = ImageIO.read(source);
-
-		int imageType = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
-		BufferedImage watermarked = new BufferedImage(image.getWidth(), image.getHeight(), imageType);
-
-		Graphics2D w = (Graphics2D) watermarked.getGraphics();
-		w.drawImage(image, 0, 0, null);
-		w.setColor(Color.BLACK);
-		File BariolFont = new ClassPathResource("bariol.otf").getFile();
-		Font font = Font.createFont(Font.TRUETYPE_FONT, BariolFont);
-		font = font.deriveFont(Font.PLAIN, 34);
-		w.setFont(font);
-		w.drawString("Blood Group :", 85, 1015);
-		w.drawString(text, 275, 1015);
-		ImageIO.write(watermarked, type, destination);
-		w.dispose();
-	}
-
 	static void addQr(byte[] qrimg, File sourceImageFile, File destImageFile) {
 		try {
 			BufferedImage sourceImage = ImageIO.read(sourceImageFile);
@@ -104,6 +49,7 @@ public class IDCard_Generator {
 		BufferedImage watermarked = new BufferedImage(image.getWidth(), image.getHeight(), imageType);
 
 		Graphics2D w = (Graphics2D) watermarked.getGraphics();
+		w.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		w.drawImage(image, 0, 0, null);
 
 		w.setColor(Color.BLACK);
@@ -130,5 +76,31 @@ public class IDCard_Generator {
 		g2.dispose();
 		ImageIO.write(newImage, "png", actudestImageFilefront);
 
+	}
+	static void frontAddingText(String name,String id, String blood, String type,  File source, File destination) throws IOException, FontFormatException {
+		BufferedImage image = ImageIO.read(source);
+		int imageType = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
+		BufferedImage watermarked = new BufferedImage(image.getWidth(), image.getHeight(), imageType);
+		Graphics2D w = (Graphics2D) watermarked.getGraphics();
+		w.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		w.drawImage(image, 0, 0, null);
+		w.setColor(Color.BLACK);
+		File BariolFont = new ClassPathResource("bariol.otf").getFile();
+		Font font = Font.createFont(Font.TRUETYPE_FONT, BariolFont);
+		font = font.deriveFont(Font.PLAIN, 45);
+		w.setFont(font);
+		w.drawString(name, 85, 960);
+		font = font.deriveFont(Font.PLAIN, 36);
+		w.setFont(font);
+		w.drawString("Blood Group :", 85, 1015);
+		w.drawString(blood, 278, 1015);
+		w.setFont(font);
+		AffineTransform at = new AffineTransform();
+		at.setToRotation(Math.toRadians(270), 80, 100);
+		w.setTransform(at);
+		w.drawString(id, -480, 650);
+		font = font.deriveFont(Font.PLAIN, 34);
+		ImageIO.write(watermarked, type, destination);
+		w.dispose();
 	}
 }

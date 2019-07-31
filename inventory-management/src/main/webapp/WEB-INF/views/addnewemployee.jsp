@@ -45,11 +45,11 @@
 
 				<label>Pan Number: </label><input type="text" placeholder="Enter Pan Number"
 					name="panNumber" required pattern="[A-Za-z0-9_]{10}"
-					title="Must contain ten-digit alphanumeric numbers"></input>
+					title="Pan Number must contain ten-digit alphanumeric numbers"></input>
 
 				<label>Aadhar Number: </label><input type="text" placeholder="Enter Aadhar Number"
 					name="aadharNumber" required pattern="[0-9]{12}"
-					title="Must contain twelve-digit number"></input><br>
+					title="Aadhar Number must contain twelve-digit number"></input><br>
 
 				<label>Work Experience: </label><input type="number" placeholder="Enter Work Experience in yrs"
 					name="workExperience" required></input>
@@ -125,7 +125,7 @@
                 					       
                 <label>Phone Number: </label><input type="text" placeholder="Enter Phone Number" name="phoneNumber" required
                 required pattern="[0-9]{10}"
-					title="Must contain ten-digit number"></input><br>
+					title="Phone Number must contain ten-digit number"></input><br>
 
             <label>Insert Your Photo:</label><input type = "file" name = "fileUpload" size = "50" required></input>
 				

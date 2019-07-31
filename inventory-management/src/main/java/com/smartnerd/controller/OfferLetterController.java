@@ -1,7 +1,6 @@
 package com.smartnerd.controller;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,11 +34,12 @@ public class OfferLetterController {
 		if(OfferService.generateofferletter(offer.getEname(), offer.getDoj(),offer.getCtc(),offer.getRole(),offer.getFile(),offer.getBasicsalary(),offer.getHra(),offer.getPf(),offer.getStandarddeduction(),offer.getLta(),offer.getSpecialallowance()))
 		{
 			String Downloadfilename=offer.getEname()+ offer.getDoj()+".pdf";
-			model.addObject("m","Ready to download");
+			model.addObject("m","Offer Letter Generated Successfully");
+			model.addObject("view","Click here to View");
 			model.addObject("name",Downloadfilename);
 			return model;
 		}
-		model.addObject("m","UnSuccessfull");
+		model.addObject("m","Unsuccessful");
 		return model;
 	}
 }
