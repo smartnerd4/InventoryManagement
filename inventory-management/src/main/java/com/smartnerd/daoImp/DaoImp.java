@@ -1,4 +1,5 @@
 package com.smartnerd.daoImp;
+
 import java.sql.Date;
 import java.text.ParseException;
 import java.io.File;
@@ -45,14 +46,14 @@ public class DaoImp implements Dao {
 		EmployeeModel oemodel = (EmployeeModel) cr.uniqueResult();
 		session.close();
 		return oemodel;
-}
+	}
 
-	public boolean addnewemployee(String employeeName, String employeeEmail, String deptID, String doj, String panNumber,
-			String aadharNumber, Integer workExperience, String previousOrganisation, String relevDate,
-			String reportingID, String managerID, String highestQualification, CommonsMultipartFile[] fileUpload,
-			String bloodGroup, String tshirtSize, String emergencyAddress, String permanentAddress,
-			String placeofReporting, String gender, String phoneNumber, Integer citycode)
-			throws WriterException, IOException, ParseException { 
+	public boolean addnewemployee(String employeeName, String employeeEmail, String deptID, String doj,
+			String panNumber, String aadharNumber, Integer workExperience, String previousOrganisation,
+			String relevDate, String reportingID, String managerID, String highestQualification,
+			CommonsMultipartFile[] fileUpload, String bloodGroup, String tshirtSize, String emergencyAddress,
+			String permanentAddress, String placeofReporting, String gender, String phoneNumber, Integer citycode)
+			throws WriterException, IOException, ParseException {
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		EmployeeModel anemodel = new EmployeeModel();
@@ -115,12 +116,11 @@ public class DaoImp implements Dao {
 
 	public EmployeeModel get(String id) {
 		Session session = sessionFactory.openSession();
-		session.close();
 		return (EmployeeModel) session.get(EmployeeModel.class, id);
-		
 	}
-	public boolean addnewbc(String name, String phno, String designation, String email) throws WriterException, IOException
-	{
+
+	public boolean addnewbc(String name, String phno, String designation, String email)
+			throws WriterException, IOException {
 		Session se = sessionFactory.openSession();
 		se.beginTransaction();
 		BusinessCardModel bcmodel = new BusinessCardModel();
@@ -128,8 +128,8 @@ public class DaoImp implements Dao {
 		bcmodel.setPhoneNumber(phno);
 		bcmodel.setDesignation(designation);
 		bcmodel.setEmail(email);
-		
-		String qrCodeText ="smartnerd.in";
+
+		String qrCodeText = "smartnerd.in";
 		String rootPath = System.getProperty("java.io.tmpdir");
 
 		String filePath = rootPath + File.separator + name + ".png";
@@ -137,7 +137,6 @@ public class DaoImp implements Dao {
 		String fileType = "png";
 		File qrFile = new File(filePath);
 		Qr.createQRImage(qrFile, qrCodeText, size, fileType);
-	
 
 		File imagePath = new File(filePath);
 
@@ -152,18 +151,10 @@ public class DaoImp implements Dao {
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
-			}
+		}
 		se.save(bcmodel);
 		se.getTransaction().commit();
 		se.close();
 		return true;
-}
-	public BusinessCardModel getbc(String name) {
-		Session session = sessionFactory.openSession();
-		Criteria cr = session.createCriteria(BusinessCardModel.class);
-		cr.add(Restrictions.eq("name", name));
-	    BusinessCardModel bcmodel = (BusinessCardModel) cr.uniqueResult();
-	    session.close();
-		return bcmodel;
 	}
 }

@@ -40,8 +40,6 @@ public interface Service {
 	public EmployeeModel get(String id);
 	
 	public boolean addnewbc(String name, String phno, String designation, String email) throws WriterException, IOException;
-	
-	public BusinessCardModel getbcimage(String name);
 
 	public boolean BCcreation(File sourceImageFile, File destImageFilefront, File sourceBackImageFile,
 			File destImageFileend, File actudestImageFilefront, String name, String email, String phno,

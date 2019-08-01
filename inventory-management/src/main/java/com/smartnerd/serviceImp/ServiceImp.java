@@ -122,10 +122,7 @@ public boolean addnewbc(String name, String phno, String designation, String ema
 	return false;
 	
 }
-public BusinessCardModel getbcimage(String name) {
-BusinessCardModel emp = dao.getbc(name);
-	return emp;
-}
+
 public boolean BCcreation(File sourceImageFile, File destImageFilefront, File sourceBackImageFile,
 		File destImageFileend, File actudestImageFilefront, String name, String email, String phno,
 		String designation, File qrimg) throws IOException, FontFormatException

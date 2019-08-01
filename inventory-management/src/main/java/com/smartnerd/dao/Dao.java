@@ -24,5 +24,4 @@ public interface Dao {
 	public EmployeeModel get(String id);
 
 	public boolean addnewbc(String name, String phno, String designation, String email) throws WriterException, IOException;
-	public BusinessCardModel getbc(String name);
 }
